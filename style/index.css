@@ -1,26 +1,18 @@
-/* ensure all pages have Bootstrap CSS */
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@tailwind base;
 
-.md-container {
-  max-width: 800px;
-  padding-top: 2rem;
+/* Write your own custom base styles here */
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/* Write you own custom component styles here */
+.btn-blue {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
 }
 
-.sml-card {
-  width: 22rem;
-  margin: 1rem 0;
-}
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
 
-.cntr-footer {
-  height: 80px;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top: 1px solid #ccc;
-}
-
-.sml-logo {
-  height: 1em;
-  margin-left: 10px;
-}
+/* Your own custom utilities */

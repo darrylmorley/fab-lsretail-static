@@ -1,5 +1,5 @@
 {
-  "name": "with-react-bootstrap",
+  "name": "fab-defense-uk",
   "version": "0.1.0",
   "author": "Wenzhi Li",
   "license": "MIT",
@@ -9,10 +9,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "bootstrap": "^4.4.1",
+    "@styled-icons/boxicons-regular": "^10.15.1",
+    "axios": "^0.20.0",
     "next": "latest",
+    "postcss-flexbugs-fixes": "^4.2.1",
+    "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
-    "react-bootstrap": "^1.0.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1",
+    "tailwindcss": "^1.7.3"
   }
 }

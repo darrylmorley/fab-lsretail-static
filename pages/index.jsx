@@ -1,89 +1,31 @@
-import Head from 'next/head'
-import { Container, Row, Card, Button } from 'react-bootstrap'
+// import Head from 'next/head'
 
-export default function Home() {
+import Nav from '../components/Nav'
+import Banner from '../components/Banner'
+import BannerBottom from '../components/BannerBottom'
+import Footer from '../components/Footer'
+
+export default function Home({items}) {
   return (
-    <Container className="md-container">
-      <Head>
-        <title>ReactJS with react-bootstrap</title>
-        <link rel="icon" href="/favicon-32x32.png" />
-      </Head>
-      <Container>
-        <h1>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        <p>
-          Get started by editing <code>pages/index.js</code>
-        </p>
-        <Container>
-          <Row className="justify-content-md-between">
-            <Card className="sml-card">
-              <Card.Body>
-                <Card.Title>Documentation</Card.Title>
-                <Card.Text>
-                  Find in-depth information about Next.js features and API.
-                </Card.Text>
-                <Button variant="primary" href="https://nextjs.org/docs">
-                  More &rarr;
-                </Button>
-              </Card.Body>
-            </Card>
-            <Card className="sml-card">
-              <Card.Body>
-                <Card.Title>Learn</Card.Title>
-                <Card.Text>
-                  Learn about Next.js in an interactive course with quizzes!
-                </Card.Text>
-                <Button variant="primary" href="https://nextjs.org/learn">
-                  More &rarr;
-                </Button>
-              </Card.Body>
-            </Card>
-          </Row>
-          <Row className="justify-content-md-between">
-            <Card className="sml-card">
-              <Card.Body>
-                <Card.Title>Examples</Card.Title>
-                <Card.Text>
-                  Discover and deploy boilerplate example Next.js projects.
-                </Card.Text>
-                <Button
-                  variant="primary"
-                  href="https://github.com/vercel/next.js/tree/master/examples"
-                >
-                  More &rarr;
-                </Button>
-              </Card.Body>
-            </Card>
-            <Card className="sml-card">
-              <Card.Body>
-                <Card.Title>Deploy</Card.Title>
-                <Card.Text>
-                  Instantly deploy your Next.js site to a public URL with
-                  Vercel.
-                </Card.Text>
-                <Button
-                  variant="primary"
-                  href="https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=example&utm_campaign=next-example"
-                >
-                  More &rarr;
-                </Button>
-              </Card.Body>
-            </Card>
-          </Row>
-        </Container>
-      </Container>
-
-      <footer className="cntr-footer">
-        <a
-          href="https://vercel.com?filter=next.js&utm_source=github&utm_medium=example&utm_campaign=next-example"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="sml-logo" />
-        </a>
-      </footer>
-    </Container>
+    <div>
+      <Nav />
+      <Banner />
+      <hr className="my-4" />
+      <main className="px-24 mt-12">
+        <section className="w-full flex">
+          <div className="w-1/3 m-2 flex items-center justify-center bg-black"><img src="products/FX-AG43B-Black.jpg" alt="FAB Defense AG43B" width="250"/></div>
+          <div className="w-1/3 m-2 flex items-center justify-center border-2 border-solid border-black"><img src="products/FX-REGB-White.jpg" alt="" width="250" /></div>
+          <div className="w-1/3 m-2 flex items-center justify-center bg-fabgrey"><img src="products/FX-GLCOREB-DkGray.jpg" alt="" width="250" /></div>
+        </section>
+        <section className="w-full flex">
+        <div className="w-1/3 m-2 flex items-center justify-center bg-black"><img src="products/FX-TPODG2B-Black.jpg" alt="" width="250"/></div>
+          <div className="w-1/3 m-2 flex items-center justify-center bg-fabgrey"><img src="products/FX-GLCORES-DkGray.jpg" alt="" width="250" /></div>
+          <div className="w-1/3 m-2 flex items-center justify-center bg-fabred"><img src="products/FX-USM-Red.jpg" alt="" width="250" /></div>
+        </section>
+      </main>
+      <hr className="mt-12" />
+      <BannerBottom />
+      <Footer />
+    </div>
   )
 }
