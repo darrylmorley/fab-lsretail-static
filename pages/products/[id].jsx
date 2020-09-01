@@ -9,6 +9,7 @@ const Product = ({item}) => {
     <div>
       <Nav />
       <main>
+        <img src={item.Images ? item.Images.Image.baseImageURL + 'w_250,h_250/' + item.Images.Image.publicID + '.png' : null} alt={item.description} />
         {item.description}
       </main>
       <Footer />
