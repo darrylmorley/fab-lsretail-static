@@ -30,9 +30,9 @@ export async function getStaticPaths() {
     
     const items = await res.data.Item
 
-    const paths = items.map(item => ({
-      params: {id: item.itemID}
-    }))
+    const paths = items.map(item => (
+      { params: { id: item.itemID }}
+    ))
 
     return {paths, fallback: false}
   } catch(err) {
@@ -41,7 +41,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log(params)
   const header = await setHeader()
   const accountID = process.env.ACCOUNT_ID
   const loadRelations = ["ItemShops", "Images", "CustomFieldValues"]
