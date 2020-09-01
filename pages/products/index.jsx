@@ -1,9 +1,7 @@
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-const {
-  refreshToken,
-  getAccountID,
-} = require("../../lib/api/lightspeed");
+import Link from 'next/link'
+const setHeader = require('../../lib/api/lightspeed')
 const lightspeedApi = "https://api.lightspeedapp.com/API";
 const axios = require("axios");
 
@@ -15,13 +13,17 @@ const Products = ({items}) => {
       <main>
         <ul>
           {items.map((item) => { 
+            const slug = item.description.toString().toLowerCase().replace(/ /g, '-')
+            
             return (
-              <div key={item.itemID}>
-                {/* <li>{item.Images[0].Image}</li> */}
-                <li>{item.description}</li>
-                <li>£{item.Prices.ItemPrice[0].amount}</li>
-                <p>{item.CustomFieldValues.CustomFieldValue[1].value}</p>
+              <Link href='/products/[id]' as={`/products/${item.itemID}`}>
+              <div key={item.itemID} className="m-4 p-4 border">
+                  <img src={item.Images ? item.Images.Image.baseImageURL + 'w_250,h_250/' + item.Images.Image.publicID + '.png' : null} />
+                  <p>{item.description}</p>
+                  <p>£{item.Prices.ItemPrice[0].amount}</p>
+                  <p>{item.CustomFieldValues.CustomFieldValue[1].value}</p>
               </div>
+              </Link>
             )
           })}
         </ul>
@@ -32,16 +34,8 @@ const Products = ({items}) => {
 }
 
 export async function getStaticProps() {
-  const setHeader = async () => {
-    const token = await refreshToken()
-    const header = {
-      Authorization: `Bearer ${token}`
-    }
-    return header
-  }
-
   const header = await setHeader()
-  const accountID = await getAccountID()
+  const accountID = process.env.ACCOUNT_ID
   const loadRelations = ["ItemShops", "Images", "CustomFieldValues"]
   
   try {
