@@ -1,7 +1,7 @@
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import Link from 'next/link'
-const setHeader = require('../../lib/api/lightspeed')
+const setHeader = require('../../api/lightspeed')
 const lightspeedApi = "https://api.lightspeedapp.com/API";
 const axios = require("axios");
 
