@@ -17,8 +17,10 @@ const Product = ({item}) => {
         <img src={item.Images ? item.Images.Image.baseImageURL + 'w_250,h_250/' + item.Images.Image.publicID + '.png' : null} alt={item.description} />
         {item.description}
         <h1>{item.description}</h1>
-        <p>{item.CustomFieldValues.CustomFieldValue[0].value}</p>
+        {/* <p>{item.CustomFieldValues.CustomFieldValue[0].value}</p> */}
         <p>£{item.Prices.ItemPrice[0].amount}</p>
+
+        <button className="mt-4 p-2 border rounded">Add to Cart</button>
       </main>
       <Footer />
     </div>
@@ -31,7 +33,7 @@ export async function getStaticPaths() {
   
   try {
     const res = await axios({
-      url: `${lightspeedApi}/Account/${accountID}/Item.json?manufacturerID=55`,
+      url: `${lightspeedApi}/Account/214742/Item.json?manufacturerID=168`,
       method: "get",
       headers: header,
     });
@@ -42,6 +44,7 @@ export async function getStaticPaths() {
       params: { id: item.itemID },
     }))
 
+    console.log(paths)
     return {paths, fallback: false}
   } catch(err) {
     console.error(err)
@@ -55,7 +58,7 @@ export async function getStaticProps({ params }) {
   
   try {
     const res = await axios({
-      url: `${lightspeedApi}/Account/${accountID}/Item/${params.id}.json?load_relations=${JSON.stringify(
+      url: `${lightspeedApi}/Account/214742/Item/${params.id}.json?load_relations=${JSON.stringify(
         loadRelations
       )}`,
       method: "get",

@@ -1,6 +1,7 @@
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import Link from 'next/link'
+import { CartProvider } from 'use-shopping-cart';
 const setHeader = require('../../api/lightspeed')
 const lightspeedApi = "https://api.lightspeedapp.com/API";
 const axios = require("axios");
@@ -8,6 +9,7 @@ const axios = require("axios");
 const Products = ({items}) => {
   console.log(items)
   return (
+    <CartProvider>
     <div>
       <Nav />
       <main>
@@ -21,7 +23,7 @@ const Products = ({items}) => {
                   <img src={item.Images ? item.Images.Image.baseImageURL + 'w_250,h_250/' + item.Images.Image.publicID + '.png' : null} />
                   <p>{item.description}</p>
                   <p>£{item.Prices.ItemPrice[0].amount}</p>
-                  <p>{item.CustomFieldValues.CustomFieldValue[1].value}</p>
+                  {/* <p>{item.CustomFieldValues.CustomFieldValue[1].value}</p> */}
               </div>
               </Link>
             )
@@ -30,6 +32,7 @@ const Products = ({items}) => {
       </main>
       <Footer />
     </div>
+    </CartProvider>
   )
 }
 
@@ -40,7 +43,7 @@ export async function getStaticProps() {
   
   try {
     const res = await axios({
-      url: `${lightspeedApi}/Account/${accountID}/Item.json?manufacturerID=55&load_relations=${JSON.stringify(
+      url: `${lightspeedApi}/Account/214742/Item.json?manufacturerID=168&load_relations=${JSON.stringify(
         loadRelations
       )}`,
       method: "get",

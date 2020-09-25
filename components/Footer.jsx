@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="w-full px-24 flex bg-fabgrey text-white">
       <section className="w-2/6 mt-8">
         <div className="flex justify-start">
-          <Link href="/"><a><img src="logos/FAB-logo.png" alt="FAB Defense Logo" width="120" /></a></Link>
+          <Link href="/"><a><img src="/logos/FAB-logo.png" alt="FAB Defense Logo" width="120" /></a></Link>
         </div>
         <div className="mt-8">
           <h3 className="font-bold">EXPECT MORE</h3>

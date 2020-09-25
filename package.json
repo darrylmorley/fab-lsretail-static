@@ -21,6 +21,7 @@
     "react-dom": "^16.13.1",
     "stripe": "^8.91.0",
     "styled-components": "^5.1.1",
-    "tailwindcss": "^1.7.3"
+    "tailwindcss": "^1.7.3",
+    "use-shopping-cart": "^2.1.0"
   }
 }

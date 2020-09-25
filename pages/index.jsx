@@ -1,5 +1,4 @@
 // import Head from 'next/head'
-
 import Nav from '../components/Nav'
 import Banner from '../components/Banner'
 import BannerBottom from '../components/BannerBottom'
