@@ -4,9 +4,9 @@ const lightspeedApi = "https://api.lightspeedapp.com/API";
 const refreshToken = async () => {
   const body = {
     grant_type: "refresh_token",
-    client_id: process.env.LIGHTSPEED_ID_TEST,
-    client_secret: process.env.LIGHTSPEED_SECRET_TEST,
-    refresh_token: process.env.LIGHTSPEED_REFRESH_TOKEN_TEST,
+    client_id: process.env.LIGHTSPEED_ID,
+    client_secret: process.env.LIGHTSPEED_SECRET,
+    refresh_token: process.env.LIGHTSPEED_REFRESH_TOKEN,
   };
 
   try {

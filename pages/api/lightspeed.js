@@ -10,7 +10,7 @@ async function getHeader() {
   };
 
   const axiosConfig = {
-    baseURL: `https://api.lightspeedapp.com/API/Account/${process.env.LIGHTSPEED_ACCOUNT_TEST}/`,
+    baseURL: `https://api.lightspeedapp.com/API/Account/${process.env.ACCOUNT_ID}/`,
     headers: header
   }
 

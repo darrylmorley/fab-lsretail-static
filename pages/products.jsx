@@ -1,15 +1,17 @@
-import Product from '../components/Product'
+import Layout from '../components/Layout'
+import ProductCard from '../components/ProductCard'
 import Cart from '../components/Cart'
+import Image from 'next/image'
 
 const Products = (items) => {
   console.log(items.items)
   return (
-    <div>
+    <Layout>
       <Cart />
       {items.items.map(item => (
-        <Product title={item.description} price={item.Prices.ItemPrice[0].amount} key={item.itemID} />
+        <ProductCard item={item} />
       ))}
-    </div>
+    </Layout>
   )
 }
 

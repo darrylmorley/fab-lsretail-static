@@ -1,5 +1,3 @@
-
-
 const Product = (props) => {
   const { Item } = props.props
   console.log(Item)
