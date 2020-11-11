@@ -1,15 +1,12 @@
 import Layout from '../components/Layout'
 import ProductCard from '../components/ProductCard'
-import Cart from '../components/Cart'
-import Image from 'next/image'
 
 const Products = (items) => {
   console.log(items.items)
   return (
     <Layout>
-      <Cart />
       {items.items.map(item => (
-        <ProductCard item={item} />
+        <ProductCard item={item} key={item.itemID} />
       ))}
     </Layout>
   )

@@ -1,15 +1,12 @@
 import Link from 'next/link'
-import styled from 'styled-components'
-import { ChevronDown } from '@styled-icons/boxicons-regular'
-import { useState } from 'react'
-
-export const WhiteChevronDown = styled(ChevronDown)`
-  color: white;
-  font-weight: bold;`
+import CartIcon from '../components/CartIcon'
+import { useShoppingCart } from 'use-shopping-cart'
 
 const Nav = () => {
-  const [dropdown, setDropdown] = useState(false);
-  
+  const { cartCount } = useShoppingCart()
+
+  console.log(cartCount)
+
   return (
     <nav className="w-full px-24 flex bg-fabgrey">
       <section className="w-1/3 flex items-center justify-start">
@@ -20,15 +17,10 @@ const Nav = () => {
       <section className="w-1/3 flex items-center justify-center">
         <ul className="flex text-white text-xl font-bold space-x-8">
           <Link href="/products">
-            <a><li className="hover:text-fabred"  
-              onMouseEnter={() => setDropdown(true)} 
-              onMouseLeave={() => setDropdown(false)}>
-              PRODUCTS
-            </li></a>
+            <a>
+              <li className="hover:text-fabred">PRODUCTS</li>
+            </a>
           </Link>
-          {dropdown && (
-            <div className="absolute z-10 mt-12 p-4 text-white bg-fabgrey border border-rounded border-solid border-fabred rounded">Hi, I'm your dropdown!</div>
-          )}
           <Link href="/blog">
             <a><li className="hover:text-fabred">BLOG</li></a>
           </Link>
@@ -38,7 +30,9 @@ const Nav = () => {
         </ul>
       </section>
       <section className="w-1/3 flex items-center justify-center">
-        Cart & Social
+        <CartIcon />
+        {cartCount > 0 &&
+          <span className="bg-white w-12 h-12">{cartCount}</span>}
       </section>
     </nav>
   )
