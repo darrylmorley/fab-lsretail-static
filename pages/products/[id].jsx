@@ -19,42 +19,39 @@ const Product = (props) => {
 
   return (
     <Layout>
-      <article
-        className="flex flex-col justify-center items-center"
-      >
-        <figure>
-          <Image
-            src={product.image}
-            alt={`Photo of ${product.name}`}
-            width={250}
-            height={250}
-          />
-          <figcaption>{product.name}</figcaption>
-        </figure>
-        <div>
-          {Item.CustomFieldValues && Item.CustomFieldValues.CustomFieldValue[1].value}
+      <div className="lg:my-8 lg:mx-48">
+        <div className="lg:flex">
+          <div className="lg:w-1/2 lg:flex lg:justify-center">
+            <Image
+              src={product.image}
+              alt={`Photo of ${product.name}`}
+              width={350}
+              height={350}
+            />
+          </div>
+          <div className="lg:w-1/2">
+            <h1 className="lg:mt-8 lg:font-bold lg:text-2xl lg:uppercase">{product.name}</h1>
+            <p className="lg:font-bold lg:text-2xl">£{product.price}</p>
+
+            <p className="lg:my-4">{Item.CustomFieldValues && Item.CustomFieldValues.CustomFieldValue[1].value}</p>
+
+            <button
+              onClick={() => addItem(product)}
+              aria-label={`Add ${product.name} to your cart`}
+              className="lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2"
+            >
+              Add to Cart
+          </button>
+
+          </div>
         </div>
-        <p>£{product.price}</p>
-        {/* Adds the item to the cart */}
-        <section
-          style={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            width: '100%'
-          }}
-        >
-          <button
-            onClick={() => addItem(product)}
-            aria-label={`Add ${product.name} to your cart`}
-            style={{ height: 50, width: 100, marginBottom: 30 }}
-          >
-            Add to Cart
-        </button>
+        <h3 className="lg:p-2 lg:bg-black lg:text-white lg:text-center lg:rounded-t">Full Description</h3>
+        <section className="lg:p-4 lg:border lg:border-black lg:rounded-b">
+          <p>
+            {Item.CustomFieldValues && Item.CustomFieldValues.CustomFieldValue[0].value}
+          </p>
         </section>
-        <section>
-          {Item.CustomFieldValues && Item.CustomFieldValues.CustomFieldValue[0].value}
-        </section>
-      </article>
+      </div>
     </Layout>
   )
 }

@@ -32,7 +32,7 @@ const Nav = () => {
       <section className="w-1/3 flex items-center justify-center">
         <CartIcon />
         {cartCount > 0 &&
-          <span className="bg-white w-12 h-12">{cartCount}</span>}
+          <span className="bg-white w-4 h-4 rounded-full text-center align-baseline">{cartCount}</span>}
       </section>
     </nav>
   )

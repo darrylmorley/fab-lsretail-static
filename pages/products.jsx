@@ -2,12 +2,13 @@ import Layout from '../components/Layout'
 import ProductCard from '../components/ProductCard'
 
 const Products = (items) => {
-  console.log(items.items)
   return (
     <Layout>
-      {items.items.map(item => (
-        <ProductCard item={item} key={item.itemID} />
-      ))}
+      <div className="lg:my-12 lg:flex lg:flex-wrap lg:justify-center">
+        {items.items.map(item => (
+          <ProductCard item={item} key={item.itemID} />
+        ))}
+      </div>
     </Layout>
   )
 }

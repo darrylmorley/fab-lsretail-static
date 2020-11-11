@@ -13,23 +13,23 @@ const CartForm = (props) => {
       {Object.keys(cartDetails).map(item => {
         return (
           <tr>
-            <td className="flex">
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
               <button
                 onClick={() => removeItem(cartDetails[item].sku)}
                 aria-label={`Remove ${cartDetails[item].name} from your cart`}
               >
-                <TiDelete />
+                <TiDelete size="1.5em" />
               </button>
             </td>
-            <td><Image
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"><Image
               src={cartDetails[item].image}
               width={80}
               height={80}
               alt={`Image of ${cartDetails[item].name}`}
             /></td>
-            <td>{cartDetails[item].name}</td>
-            <td>{cartDetails[item].quantity}</td>
-            <td>£{cartDetails[item].price}</td>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].name}</td>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].quantity}</td>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">£{cartDetails[item].price}</td>
           </tr>
         )
       })}
