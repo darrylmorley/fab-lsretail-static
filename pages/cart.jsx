@@ -1,6 +1,7 @@
-import CartForm from '../components/cart/CartForm'
+import CartItems from '../components/cart/CartItems'
 import Layout from '../components/Layout'
 import { useShoppingCart } from 'use-shopping-cart'
+import Link from 'next/link'
 
 const Cart = () => {
   const { clearCart, cartDetails, totalPrice } = useShoppingCart()
@@ -22,7 +23,7 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                <CartForm cartDetails={cartDetails} />
+                <CartItems cartDetails={cartDetails} />
               </tbody>
             </table>
           </div>
@@ -39,7 +40,9 @@ const Cart = () => {
         </div>
         <div className="lg:mt-4 lg:flex lg:justify-end">
           <button onClick={clearCart} className="lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2 ">Clear Cart</button>
-          <button onClick={clearCart} className="lg:ml-4 lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2">Pay Now</button>
+          <Link href="/checkout">
+            <button className="lg:ml-4 lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2">Pay Now</button>
+          </Link>
         </div>
       </div>
     </Layout>

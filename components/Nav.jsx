@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import CartIcon from '../components/CartIcon'
+import CartIcon from './cart/CartIcon'
 import { useShoppingCart } from 'use-shopping-cart'
 
 const Nav = () => {
