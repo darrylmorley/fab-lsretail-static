@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <CartProvider
       stripe={stripePromise}
+      mode="checkout-session"
       successUrl="stripe.com"
       cancelUrl="twitter.com/dayhaysoos"
       currency="GBP"
