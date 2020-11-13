@@ -1,13 +1,17 @@
-import Stripe from "stripe"
+import Stripe from 'stripe'
+const stripe = new Stripe(process.env.STRIPE_API_SECRET, {
+  // https://github.com/stripe/stripe-node#configuration
+  apiVersion: '2020-03-02',
+})
 
-const stripe = new Stripe(process.env.STRIPE_API_SECRET)
-
-export default async function handler(req, res) {
+export default async function handler(
+  req,
+  res
+) {
   const id = req.query.id
-
   try {
     if (!id.startsWith('cs_')) {
-      throw Error('Incorrect CheckoutSession ID')
+      throw Error('Incorrect CheckoutSession ID.')
     }
     const checkout_session = await stripe.checkout.sessions.retrieve(
       id,
