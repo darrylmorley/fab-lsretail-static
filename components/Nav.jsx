@@ -5,8 +5,6 @@ import { useShoppingCart } from 'use-shopping-cart'
 const Nav = () => {
   const { cartCount } = useShoppingCart()
 
-  console.log(cartCount)
-
   return (
     <nav className="w-full px-24 flex bg-fabgrey">
       <section className="w-1/3 flex items-center justify-start">

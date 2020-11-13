@@ -29,7 +29,7 @@ const CartForm = (props) => {
             /></td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].name}</td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].quantity}</td>
-            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">£{cartDetails[item].price}</td>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].formattedValue}</td>
           </tr>
         )
       })}

@@ -1,11 +1,39 @@
+import React, { useState, useEffect } from 'react'
+import { useShoppingCart } from 'use-shopping-cart'
+import { fetchPostJSON } from '../utils/api-helpers'
 import CartItems from '../components/cart/CartItems'
 import Layout from '../components/Layout'
-import { useShoppingCart } from 'use-shopping-cart'
 import Link from 'next/link'
 
 const Cart = () => {
-  const { clearCart, cartDetails, totalPrice } = useShoppingCart()
-  // console.log(cartDetails)
+  const [loading, setLoading] = useState(false)
+  const [cartEmpty, setCartEmpty] = useState(true)
+  const {
+    // formattedTotalPrice,
+    cartCount,
+    clearCart,
+    cartDetails,
+    redirectToCheckout,
+  } = useShoppingCart()
+
+  useEffect(() => setCartEmpty(!cartCount), [cartCount])
+
+  const handleCheckout = async (event) => {
+    event.preventDefault()
+    setLoading(true)
+
+    const response = await fetchPostJSON(
+      '/api/checkout_sessions/cart',
+      cartDetails
+    )
+
+    if (response.statusCode === 500) {
+      console.error(response.message)
+      return
+    }
+
+    redirectToCheckout({ sessionId: response.id })
+  }
 
   return (
     <Layout>
@@ -34,15 +62,14 @@ const Cart = () => {
               <h3>Cart Total</h3>
             </div>
             <div className="lg:p-2 lg:text-center">
-              <p>£{totalPrice.toFixed(2)}</p>
+              <p>Price</p>
             </div>
           </div>
         </div>
         <div className="lg:mt-4 lg:flex lg:justify-end">
           <button onClick={clearCart} className="lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2 ">Clear Cart</button>
-          <Link href="/checkout">
-            <button className="lg:ml-4 lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2">Pay Now</button>
-          </Link>
+          <button onClick={handleCheckout} className="lg:ml-4 lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2">Pay Now</button>
+
         </div>
       </div>
     </Layout>
