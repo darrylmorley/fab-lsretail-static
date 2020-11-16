@@ -30,5 +30,5 @@ export async function getItem(itemID) {
 
 export async function createSale(newSale) {
   let axiosConfig = await getHeader()
-  return axios.post(`Sale.json`, newSale, axiosConfig).catch(error => console.error(error.data))
+  return axios.post(`Sale.json`, newSale, axiosConfig).catch(error => console.error(error.data).then(res => { return res }))
 }

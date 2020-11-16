@@ -5,22 +5,11 @@ import PrintObject from '../components/PrintObject'
 import { fetchGetJSON } from '../utils/api-helpers'
 import { createSale } from '../pages/api/lightspeed'
 import nookies, { parseCookies, setCookie, destroyCookie } from 'nookies'
-import { formatCurrencyString } from 'use-shopping-cart'
-
 
 const ResultPage = (props) => {
   const router = useRouter()
   const { data } = props.props
-
-
-  // Fetch CheckoutSession from static page via
-  // https://nextjs.org/docs/basic-features/data-fetching#static-generation
-  // const { data, error } = useSWR(
-  //   router.query.session_id
-  //     ? `/api/checkout_sessions/${router.query.session_id}`
-  //     : null,
-  //   fetchGetJSON
-  // )
+  const { saleID } = props.props
 
   if (!props) return <div>failed to load</div>
 
@@ -28,6 +17,7 @@ const ResultPage = (props) => {
     <Layout title="Checkout Payment Result | Next.js + TypeScript Example">
       <div className="page-container">
         <h1>Checkout Payment Result</h1>
+        <h2>Sale Reference: {saleID}</h2>
         <h2>Status: {data?.payment_intent?.status ?? 'loading...'}</h2>
         <h3>CheckoutSession response:</h3>
         <PrintObject content={data ?? 'loading...'} />
@@ -45,6 +35,7 @@ ResultPage.getInitialProps = async ({ query, req }) => {
 
   const data = await fetch(`http://${headers.host}/api/checkout_sessions/${session_id}`)
   const stripeSessionData = await data.json()
+  let saleID = null
 
   if (cart) {
     if (stripeSessionData.payment_status === 'paid') {
@@ -86,15 +77,17 @@ ResultPage.getInitialProps = async ({ query, req }) => {
         }
       }
 
-      console.log("Sale = ", JSON.stringify(sale))
-      createSale(sale)
+      await createSale(sale).then(res => {
+        saleID = res.data.Sale.saleID
+      })
     }
   }
 
 
   return {
     props: {
-      data: stripeSessionData
+      data: stripeSessionData,
+      saleID: saleID
     }
   }
 }
