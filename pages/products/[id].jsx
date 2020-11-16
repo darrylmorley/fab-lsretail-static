@@ -12,7 +12,9 @@ const Product = (props) => {
     sku: Item.customSku,
     price: Item.Prices.ItemPrice[0].amount.replace('.', ''),
     currency: 'GBP',
-    image: `${Item.Images.Image.baseImageURL}/w_250/${Item.Images.Image.publicID}.jpg`
+    image: `${Item.Images.Image.baseImageURL}/w_250/${Item.Images.Image.publicID}.jpg`,
+    itemID: Item.itemID,
+    unitPrice: Item.Prices.ItemPrice[0].amount,
   }
 
   return (

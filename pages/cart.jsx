@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useShoppingCart } from 'use-shopping-cart'
 import { fetchPostJSON } from '../utils/api-helpers'
 import CartItems from '../components/cart/CartItems'
+import { setCookie } from 'nookies'
 import Layout from '../components/Layout'
 import Link from 'next/link'
 
@@ -9,18 +10,21 @@ const Cart = () => {
   const [loading, setLoading] = useState(false)
   const [cartEmpty, setCartEmpty] = useState(true)
   const {
-    // formattedTotalPrice,
     cartCount,
     clearCart,
     cartDetails,
     redirectToCheckout,
+    formattedTotalPrice,
   } = useShoppingCart()
+
+  console.log(cartDetails)
 
   useEffect(() => setCartEmpty(!cartCount), [cartCount])
 
   const handleCheckout = async (event) => {
     event.preventDefault()
     setLoading(true)
+    setCookie(null, 'cart', JSON.stringify({ cartDetails, formattedTotalPrice }), { path: '/' })
 
     const response = await fetchPostJSON(
       '/api/checkout_sessions/cart',
@@ -62,7 +66,7 @@ const Cart = () => {
               <h3>Cart Total</h3>
             </div>
             <div className="lg:p-2 lg:text-center">
-              <p>Price</p>
+              <p>{formattedTotalPrice}</p>
             </div>
           </div>
         </div>

@@ -6,13 +6,11 @@ const CartForm = (props) => {
   const { cartDetails } = props
   const { removeItem } = useShoppingCart()
 
-  console.log(cartDetails)
-
   return (
     <>
       {Object.keys(cartDetails).map(item => {
         return (
-          <tr>
+          <tr key={cartDetails[item].sku}>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
               <button
                 onClick={() => removeItem(cartDetails[item].sku)}
