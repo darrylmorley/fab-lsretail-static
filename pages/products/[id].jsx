@@ -1,10 +1,18 @@
 import Image from 'next/image'
 import Layout from '../../components/Layout'
+import useSWR from 'swr'
+import { useRouter } from 'next/router'
 import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
 
-const Product = (props) => {
-  const { Item } = props.props
+const Product = () => {
+  const router = useRouter()
+  const { id } = router.query
+
   const { addItem } = useShoppingCart()
+
+  const { data, error } = useSWR(`/api/item?itemID=${id}`)
+  const { Item } = data
+
 
   const product = {
     name: Item.description,
@@ -56,22 +64,6 @@ const Product = (props) => {
       </div>
     </Layout>
   )
-}
-
-Product.getInitialProps = async ({ query, req }) => {
-  const url =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : VERCEL_URL;
-
-  const { id } = await query
-
-  const res = await fetch(`${url}/api/item?itemID=${id}`)
-  const product = await res.json()
-
-  return {
-    props: product
-  }
 }
 
 export default Product

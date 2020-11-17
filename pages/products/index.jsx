@@ -1,33 +1,30 @@
 import Layout from '../../components/Layout'
 import ProductCard from '../../components/ProductCard'
+import useSWR from 'swr'
 
-const Products = (items) => {
-  return (
-    <Layout>
-      <div className="lg:my-12 lg:flex lg:flex-wrap lg:justify-center">
-        {items.items.map(item => (
-          <ProductCard item={item} key={item.itemID} />
-        ))}
-      </div>
-    </Layout>
-  )
+const Products = () => {
+  const { data, error } = useSWR('/api/items')
+
+  console.log(data)
+
+  if (error) return <div>Ther has been a problem! Try refreshing this page.</div>
+
+  if (!data) return <div>Loading...</div>
+
+  if (data) {
+    const items = data.Item
+
+
+    return (
+      <Layout>
+        <div className="lg:my-12 lg:flex lg:flex-wrap lg:justify-center">
+          {items.map(item => (
+            <ProductCard item={item} key={item.itemID} />
+          ))}
+        </div>
+      </Layout>
+    )
+  }
 }
-
-export async function getStaticProps() {
-  const url =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : VERCEL_URL;
-
-  const res = await fetch(`${url}/api/items`)
-  const data = await res.json()
-  const items = data.Item
-
-  console.log(items)
-
-
-  return { props: { items } }
-
-};
 
 export default Products;
