@@ -59,9 +59,14 @@ const Product = (props) => {
 }
 
 Product.getInitialProps = async ({ query }) => {
+  const url =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://fab-lsretail.vercel.app";
+
   const { id } = await query
 
-  const res = await fetch(`http://localhost:3000/api/item?itemID=${id}`)
+  const res = await fetch(`${url}/api/item?itemID=${id}`)
   const product = await res.json()
 
   return {

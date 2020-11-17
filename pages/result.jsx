@@ -1,21 +1,19 @@
-import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
 import PrintObject from '../components/PrintObject'
-import { fetchGetJSON } from '../utils/api-helpers'
 import { createSale } from '../pages/api/lightspeed'
 import { useShoppingCart } from 'use-shopping-cart'
-import nookies, { parseCookies, destroyCookie } from 'nookies'
+import { parseCookies, destroyCookie } from 'nookies'
 
 const ResultPage = (props) => {
   const router = useRouter()
   const { data } = props.props
   const { saleID } = props.props
+  const { clearCart } = useShoppingCart()
 
   if (!props) return <div>failed to load</div>
 
   destroyCookie(null, 'cart')
-  const { clearCart } = useShoppingCart()
   clearCart()
 
   return (
