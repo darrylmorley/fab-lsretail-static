@@ -17,7 +17,7 @@ export async function getStaticProps() {
   const url =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : req.headers.hostname;
+      : VERCEL_URL;
 
   const res = await fetch(`${url}/api/items`)
   const data = await res.json()
