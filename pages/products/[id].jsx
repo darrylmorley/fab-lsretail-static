@@ -58,11 +58,11 @@ const Product = (props) => {
   )
 }
 
-Product.getInitialProps = async ({ query }) => {
+Product.getInitialProps = async ({ query, req }) => {
   const url =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://fab-lsretail.vercel.app";
+      : req.headers.hostname;
 
   const { id } = await query
 
