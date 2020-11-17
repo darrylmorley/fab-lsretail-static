@@ -11,13 +11,14 @@ const Product = () => {
   const { addItem } = useShoppingCart()
 
   const { data, error } = useSWR(`/api/item?itemID=${id}`)
-  const { Item } = data
 
   if (error) return <div>Something went wrong. Try refreshing the page.</div>
 
   if (!data) return <div>Loading...</div>
 
   if (data) {
+    const { Item } = data
+
     const product = {
       name: Item.description,
       description: Item.CustomFieldValues ? Item.CustomFieldValues.CustomFieldValue[1].value : '',
