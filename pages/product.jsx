@@ -1,20 +1,30 @@
 import Image from 'next/image'
-import Layout from '../../components/Layout'
+import Layout from '../components/Layout'
 import useSWR from 'swr'
-import { useRouter } from 'next/router'
+import { withRouter } from 'next/router'
 import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
 
-const Product = () => {
-  const router = useRouter()
-  const { id } = router.query
+const Product = withRouter(props => {
+  console.log(props)
+  const { router } = props
+  let { query: { slug } } = router
+  const id = slug ? parseInt(slug.split('-').pop()) : router.query.id
 
   const { addItem } = useShoppingCart()
 
   const { data, error } = useSWR(`/api/item?itemID=${id}`)
 
-  if (error) return <div>Something went wrong. Try refreshing the page.</div>
+  if (error) return (
+    <Layout>
+      <div>Something went wrong. Try refreshing the page.</div>
+    </Layout>
+  )
 
-  if (!data) return <div>Loading...</div>
+  if (!data) return (
+    <Layout>
+      <div>Loading...</div>
+    </Layout>
+  )
 
   if (data) {
     const { Item } = data
@@ -70,6 +80,6 @@ const Product = () => {
       </Layout>
     )
   }
-}
+})
 
 export default Product

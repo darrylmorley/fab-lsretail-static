@@ -4,7 +4,7 @@ import Banner from '../components/Banner'
 import BannerBottom from '../components/BannerBottom'
 import Footer from '../components/Footer'
 
-export default function Home({ items }) {
+export default function Home() {
   return (
     <div>
       <Nav />

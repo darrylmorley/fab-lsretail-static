@@ -5,12 +5,12 @@ import Image from 'next/image'
 const ProductCard = (props) => {
   const { item } = props
   const name = item.description
-  const slug = slugify(item.description)
+  const slug = slugify(item.description).toLocaleLowerCase()
 
   return (
     <>
       <div className="lg:mx-8 lg:my-8 lg:w-64 lg:overflow-hidden flex flex-col rounded lg:shadow-lg lg:border-2">
-        <Link href={`/products/[id]?id=${item.itemID}`}>
+        <Link as={`/product/${slug}`} href={`/product?slug=${slug}-${item.itemID}`}>
           <a>
             <div className="lg:flex lg:justify-center">
               {item.Images &&
