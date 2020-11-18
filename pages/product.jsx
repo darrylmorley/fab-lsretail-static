@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Layout from '../components/Layout'
 import useSWR from 'swr'
+import Link from 'next/link'
 import { withRouter } from 'next/router'
 import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
 
@@ -10,7 +11,7 @@ const Product = withRouter(props => {
   let { query: { slug } } = router
   const id = slug ? parseInt(slug.split('-').pop()) : router.query.id
 
-  const { addItem } = useShoppingCart()
+  const { addItem, cartCount } = useShoppingCart()
 
   const { data, error } = useSWR(`/api/item?itemID=${id}`)
 
@@ -42,40 +43,49 @@ const Product = withRouter(props => {
 
     return (
       <Layout>
-        <div>
-          <div>
-            <div>
-              <Image
-                src={product.image}
-                alt={`Photo of ${product.name}`}
-                width={350}
-                height={350}
-              />
+        <div className="lg:my-12">
+          <div className="w-full lg:mx-24 grid grid-cols-2 gap-4">
+            <div className="lg:w=1/2">
+              <div>
+                <h1 className="lg:font-bold lg:text-3xl uppercase">{product.name}</h1>
+                <Image
+                  src={product.image}
+                  alt={`Photo of ${product.name}`}
+                  width={600}
+                  height={600}
+                />
+              </div>
             </div>
-            <div>
-              <h1>{product.name}</h1>
-              <p> {formatCurrencyString({
-                value: product.price,
-                currency: product.currency,
-              })}</p>
-
-              <p>{Item.CustomFieldValues && Item.CustomFieldValues.CustomFieldValue[1].value}</p>
-
-              <button
-                onClick={() => addItem(product)}
-                aria-label={`Add ${product.name} to your cart`}
-              >
-                Add to Cart
-            </button>
-
+            <div className="w-1/2">
+              <div>
+                <p className="lg:font-bold lg:text-3xl uppercase lg:mb-2">{formatCurrencyString({
+                  value: product.price,
+                  currency: product.currency,
+                })}</p>
+                <p>{Item.CustomFieldValues && Item.CustomFieldValues.CustomFieldValue[1].value}</p>
+                <button
+                  onClick={() => addItem(product)}
+                  aria-label={`Add ${product.name} to your cart`}
+                  className="lg:my-8 lg:p-2 lg:bg-green-600 lg:text-white lg:rounded lg:mr-2"
+                >
+                  Add to Cart
+                </button>
+                {cartCount > 0 ? (
+                  <Link href="/cart">
+                    <button className="lg:my-8 lg:p-2 lg:bg-green-600 lg:text-white lg:rounded">View Cart</button>
+                  </Link>
+                ) : ''}
+              </div>
             </div>
           </div>
-          <h3>Full Description</h3>
-          <section>
-            <p>
-              {Item.CustomFieldValues && Item.CustomFieldValues.CustomFieldValue[0].value}
-            </p>
-          </section>
+          <div className="lg:mx-24">
+            <h3 className="lg:text-2xl lg:font-bold lg:mb-4">About {product.name}</h3>
+            <section>
+              <p>
+                {Item.CustomFieldValues && Item.CustomFieldValues.CustomFieldValue[0].value}
+              </p>
+            </section>
+          </div>
         </div>
       </Layout>
     )
