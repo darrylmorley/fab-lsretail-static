@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useShoppingCart } from 'use-shopping-cart'
 import { fetchPostJSON } from './api/api-helpers'
 import CartItems from '../components/cart/CartItems'
-import { setCookie } from 'nookies'
+import { setCookie, destroyCookie } from 'nookies'
 import Layout from '../components/Layout'
 import Link from 'next/link'
+
+
 
 const Cart = () => {
   const [loading, setLoading] = useState(false)
@@ -20,6 +22,11 @@ const Cart = () => {
   console.log(cartDetails)
 
   useEffect(() => setCartEmpty(!cartCount), [cartCount])
+
+  const clearCookie = () => {
+    destroyCookie(null, 'cart')
+    clearCart()
+  }
 
   const handleCheckout = async (event) => {
     event.preventDefault()
@@ -71,7 +78,7 @@ const Cart = () => {
           </div>
         </div>
         <div className="lg:mt-4 lg:flex lg:justify-end">
-          <button onClick={clearCart} className="lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2 ">Clear Cart</button>
+          <button onClick={clearCookie} className="lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2 ">Clear Cart</button>
           <button onClick={handleCheckout} className="lg:ml-4 lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2">Pay Now</button>
 
         </div>
