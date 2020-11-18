@@ -8,6 +8,8 @@ export async function fetchGetJSON(url) {
 }
 
 export async function fetchPostJSON(url, data) {
+  console.log(data)
+  console.log(url)
   try {
     // Default options are marked with *
     const response = await fetch(url, {
