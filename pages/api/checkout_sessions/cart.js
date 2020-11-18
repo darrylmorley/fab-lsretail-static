@@ -1,5 +1,5 @@
 import { validateCartItems } from 'use-shopping-cart/src/serverUtil'
-import { getInventory } from '../../../utils/api-helpers'
+import { getInventory } from '../../api/api-helpers'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_API_SECRET, {
