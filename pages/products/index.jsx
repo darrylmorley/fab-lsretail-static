@@ -7,13 +7,20 @@ const Products = () => {
 
   console.log(data)
 
-  if (error) return <div>Ther has been a problem! Try refreshing this page.</div>
+  if (error) return (
+    <Layout>
+      <div>There has been a problem! Please try refreshing this page.</div>
+    </Layout>
+  )
 
-  if (!data) return <div>Loading...</div>
+  if (!data) return (
+    <Layout>
+      <div>Loading...</div>
+    </Layout>
+  )
 
   if (data) {
     const items = data.Item
-
 
     return (
       <Layout>

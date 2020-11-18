@@ -9,7 +9,7 @@ const ProductCard = (props) => {
 
   return (
     <>
-      <div className="lg:mx-8 lg:my-8 lg:w-64 lg:overflow-hidden flex flex-col rounded lg:shadow-lg">
+      <div className="lg:mx-8 lg:my-8 lg:w-64 lg:overflow-hidden flex flex-col rounded lg:shadow-lg lg:border-2">
         <Link href={`/products/[id]?id=${item.itemID}`}>
           <a>
             <div className="lg:flex lg:justify-center">
