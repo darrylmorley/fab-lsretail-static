@@ -14,15 +14,13 @@ const refreshToken = async () => {
   };
 
   const cachedToken = await tokenCache.get('tokenData')
-  console.log('Cached Token, tokenData =', cachedToken)
 
-  if (cachedToken != undefined) {
+  if (cachedToken != undefined && cachedToken.expires_in > 30) {
     token = cachedToken.access_token
-    console.log('Token 1 =', token)
     return token
   }
 
-  if (cachedToken === undefined) {
+  if (cachedToken === undefined || cachedToken.expires_in < 30) {
     try {
       const response = await axios({
         url: "https://cloud.lightspeedapp.com/oauth/access_token.php",
@@ -34,12 +32,11 @@ const refreshToken = async () => {
       });
 
       const tokenData = await response.data
-      console.log('Token Data in 2 = ', tokenData)
 
       tokenCache.set('tokenData', tokenData, { checkperiod: tokenData.expires_in })
 
       token = tokenData.access_token
-      console.log('Token 2 =', token)
+
       return token;
     } catch (error) {
       if (error) console.error("We have a problem! Could not get token.", error.data);

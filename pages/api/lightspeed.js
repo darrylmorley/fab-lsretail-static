@@ -4,7 +4,6 @@ import refreshToken from './refreshToken'
 
 async function getHeader() {
   let token = await refreshToken()
-  console.log('Token in lightspeed.js = ', token)
 
   const header = {
     Authorization: `Bearer ${token}`,
