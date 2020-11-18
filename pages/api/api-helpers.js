@@ -1,3 +1,5 @@
+import { getItems } from './lightspeed'
+
 export async function fetchGetJSON(url) {
   try {
     const data = await fetch(url).then((res) => res.json())
@@ -8,8 +10,6 @@ export async function fetchGetJSON(url) {
 }
 
 export async function fetchPostJSON(url, data) {
-  console.log(data)
-  console.log(url)
   try {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -33,9 +33,10 @@ export async function fetchPostJSON(url, data) {
 }
 
 export async function getInventory() {
-  const res = await fetch('http://localhost:3000/api/items')
-  const data = await res.json()
+  const res = await getItems()
+  const data = await res.data
   const items = data.Item
+
   const products = items.map(item => {
     return (
       {
