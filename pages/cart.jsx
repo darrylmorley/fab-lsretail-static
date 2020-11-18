@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useShoppingCart } from 'use-shopping-cart'
-import { fetchPostJSON } from '../utils/api-helpers'
+import { fetchPostJSON } from './api/api-helpers'
 import CartItems from '../components/cart/CartItems'
 import { setCookie } from 'nookies'
 import Layout from '../components/Layout'
