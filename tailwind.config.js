@@ -6,6 +6,13 @@ module.exports = {
         'fabgrey': '#161616',
         'fabred': '#FE0000'
       },
+      fontFamily: {
+        sans: ['Montserrat'],
+        serif: ['Montserrat'],
+        mono: ['Montserrat'],
+        display: ['Montserrat'],
+        body: ['Montserrat']
+      },
     },
   },
   variants: {},
