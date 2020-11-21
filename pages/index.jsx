@@ -1,18 +1,17 @@
 // import Head from 'next/head'
-import Nav from '../components/Nav'
-import Banner from '../components/Banner'
+import Layout from '../components/Layout'
 import BannerBottom from '../components/BannerBottom'
 import Footer from '../components/Footer'
 import HomeModal from '../components/Modal'
 
 export default function Home() {
   return (
-    <div>
-      <Nav />
+    <Layout>
+
       {/* <Banner /> */}
       <HomeModal />
       <div id="app-modal" />
-      <main className="mx-96 my-24 flex justify-center" id="modal">
+      <main className="mx-96 mt-32 flex justify-center" id="modal">
         <section className="grid grid-cols-3 gap-2">
           <div><img src="products/FX-AG43B-Black.jpg" alt="FAB Defense AG43B" width="300" /></div>
           <div><img src="products/FX-REGB-White.jpg" alt="" width="300" /></div>
@@ -22,8 +21,9 @@ export default function Home() {
           <div><img src="products/FX-USM-Red.jpg" alt="" width="300" /></div>
         </section>
       </main>
-      <BannerBottom />
-      <Footer />
-    </div>
+      <div className="my-40">
+        <BannerBottom />
+      </div>
+    </Layout>
   )
 }
