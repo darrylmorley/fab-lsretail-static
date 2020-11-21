@@ -10,7 +10,6 @@ const ProductFilter = (props) => {
       <div className="p-2 border-r-2">
         <h5 className="mb-2">Category</h5>
         {category.map(cat => {
-
           return (
             <div>
               <input type="checkbox" id={cat.categoryID} value={cat.categoryID} checked={checkedInputs[cat.name]} onChange={handleInputChange} />

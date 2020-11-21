@@ -28,17 +28,17 @@ const Products = (props) => {
           <div className="lg:grid grid-cols-3 gap-2 lg:my-12 lg:justify-center">
             {Item.map(item => {
               for (const [key, value] of Object.entries(checkedInputs)) {
+                if (!checkedInputs || Object.keys(checkedInputs).every(value => checkedInputs[value] === false)) {
+                  return <ProductCard item={item} key={item.itemID} />
+                }
                 if (value === true) {
                   if (item.categoryID === key) {
                     console.log(item)
                     return <ProductCard item={item} key={item.itemID} />
                   }
-                } return <ProductCard item={item} key={item.itemID} />
+                }
               }
             })}
-            {/* {Item.map(item => (
-              <ProductCard item={item} key={item.itemID} />
-            ))} */}
           </div>
         </div>
       </div>
