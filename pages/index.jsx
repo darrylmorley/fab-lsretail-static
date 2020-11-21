@@ -9,6 +9,7 @@ export default function Home() {
     <div>
       <Nav />
       {/* <Banner /> */}
+      <div id="app-modal" />
       <main className="mx-96 my-24 flex justify-center" id="modal">
         <section className="grid grid-cols-3 gap-2">
           <div><img src="products/FX-AG43B-Black.jpg" alt="FAB Defense AG43B" width="300" /></div>

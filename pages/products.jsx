@@ -18,6 +18,9 @@ const Products = (props) => {
     console.log('Checked Inputs', checkedInputs)
   }, [checkedInputs])
 
+  console.log(typeof Item)
+  console.log(checkedInputs)
+
   return (
     <Layout>
       <div className="flex mx-96">
@@ -27,10 +30,10 @@ const Products = (props) => {
         <div className="w-3/4">
           <div className="lg:grid grid-cols-3 gap-2 lg:my-12 lg:justify-center">
             {Item.map(item => {
+              if (Object.keys(checkedInputs).length < 1 || Object.keys(checkedInputs).every(value => checkedInputs[value] === false)) {
+                return <ProductCard item={item} key={item.itemID} />
+              }
               for (const [key, value] of Object.entries(checkedInputs)) {
-                if (!checkedInputs || Object.keys(checkedInputs).every(value => checkedInputs[value] === false)) {
-                  return <ProductCard item={item} key={item.itemID} />
-                }
                 if (value === true) {
                   if (item.categoryID === key) {
                     console.log(item)

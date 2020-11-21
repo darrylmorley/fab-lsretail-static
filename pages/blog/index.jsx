@@ -1,13 +1,10 @@
-import Nav from '../../components/Nav'
-import Footer from '../../components/Footer'
+import Layout from '../../components/Layout'
 
 const Blog = () => {
   return (
-    <div>
-      <Nav />
+    <Layout>
       <main></main>
-      <Footer />
-    </div>
+    </Layout>
   )
 }
 

@@ -1,10 +1,8 @@
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
+import Layout from '../components/Layout'
 
 const Contact = () => {
   return (
-    <div>
-      <Nav />
+    <Layout>
       <main className="my-8 px-40">
         <h2 className="mb-4 font-bold text-2xl">Contact Us</h2>
         <p>Tel: 01527831261</p>
@@ -20,8 +18,7 @@ const Contact = () => {
         <p>Sat: 09:00 - 17:30</p>
         <p>Sun: Closed</p>
       </main>
-      <Footer />
-    </div>
+    </Layout>
   )
 }
 

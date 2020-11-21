@@ -1,9 +1,16 @@
 import Link from 'next/link'
+import { useState } from 'react'
 import CartIcon from './cart/CartIcon'
 import { useShoppingCart } from 'use-shopping-cart'
+import CartDisplay from './CartDisplay'
 
 const Nav = () => {
+  const [cartDisplay, setCartDisplay] = useState(false)
   const { cartCount } = useShoppingCart()
+
+  const updateCartDisplay = () => {
+    setCartDisplay(!cartDisplay)
+  }
 
   return (
     <div className="text-white">
@@ -40,8 +47,9 @@ const Nav = () => {
               </Link>
             </ul>
           </div>
-          <div className="w-1/3 flex justify-end">
+          <div onMouseEnter={updateCartDisplay} onMouseLeave={updateCartDisplay} className="w-1/3 flex justify-end">
             <CartIcon />
+            {cartDisplay && <CartDisplay />}
           </div>
         </div>
       </div>
