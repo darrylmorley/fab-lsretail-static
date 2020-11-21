@@ -23,7 +23,7 @@ const Products = (props) => {
 
   return (
     <Layout>
-      <div className="flex mx-96">
+      <div className="flex mx-96 mt-14">
         <div className="w-1/4">
           <ProductFilter category={Category} handleInputChange={handleInputChange} checkedInputs={checkedInputs} />
         </div>

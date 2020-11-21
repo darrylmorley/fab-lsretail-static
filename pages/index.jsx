@@ -1,13 +1,11 @@
 // import Head from 'next/head'
 import Layout from '../components/Layout'
 import BannerBottom from '../components/BannerBottom'
-import Footer from '../components/Footer'
 import HomeModal from '../components/Modal'
 
 export default function Home() {
   return (
     <Layout>
-
       {/* <Banner /> */}
       <HomeModal />
       <div id="app-modal" />
