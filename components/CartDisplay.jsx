@@ -1,4 +1,5 @@
 import { useShoppingCart } from 'use-shopping-cart'
+import Image from 'next/image'
 
 const CartDisplay = (props) => {
   const {
@@ -9,19 +10,33 @@ const CartDisplay = (props) => {
     formattedTotalPrice,
   } = useShoppingCart()
 
-  console.log(cartDetails)
-
   return (
     <div className="absolute z-10 mt-12 right-20">
-      <div className="h-96 w-64 border-2 border-fabred rounded-lg bg-black">
-        {Object.keys(cartDetails).map(item => {
-          <div>
-            <img src={item.image} alt={`Image of ${item.name}`} />
-            <h3 className="text-white">{item.name}</h3>
-          </div>
-        })}
+      <div className="w-64 border-2 border-fabred rounded-lg bg-white">
+        <table>
+          <tbody>
+            {Object.keys(cartDetails).map(item => {
+              return (
+                <tr key={cartDetails[item].sku} className="border-b-2 border-grey-400">
+                  <td className="text-sm">
+                    <Image
+                      src={cartDetails[item].image}
+                      width={80}
+                      height={80}
+                      alt={`Image of ${cartDetails[item].name}`}
+                      className="rounded-lg"
+                    />
+                  </td>
+                  <td className="px-2 py-2 text-sm text-black font-medium">{cartDetails[item].quantity}</td>
+                  <td className="px-2 py-2 text-sm text-black font-medium">{cartDetails[item].formattedValue}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+          )
       </div>
-    </div>
+    </div >
   )
 }
 

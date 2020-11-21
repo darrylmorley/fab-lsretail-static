@@ -47,9 +47,11 @@ const Nav = () => {
               </Link>
             </ul>
           </div>
-          <div onMouseEnter={updateCartDisplay} onMouseLeave={updateCartDisplay} className="w-1/3 flex justify-end">
-            <CartIcon />
-            {cartDisplay && <CartDisplay />}
+          <div className="w-1/3 flex justify-end">
+            <div onMouseEnter={updateCartDisplay} onMouseLeave={updateCartDisplay} >
+              <CartIcon />
+              {cartCount > 0 && cartDisplay && <CartDisplay />}
+            </div>
           </div>
         </div>
       </div>

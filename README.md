@@ -1,3 +1,3 @@
 # FAB Defense UK 
 
-Created using nextjs, tailwind, lightspeed retail api and stripe!
+Created using Nextjs, Tailwind, Lightspeed Retail API and Stripe!

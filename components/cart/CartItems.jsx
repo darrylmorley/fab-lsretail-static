@@ -4,7 +4,7 @@ import { TiDelete } from "react-icons/ti";
 
 const CartForm = (props) => {
   const { cartDetails } = props
-  const { removeItem } = useShoppingCart()
+  const { removeItem, setItemQuantity } = useShoppingCart()
 
   return (
     <>
@@ -26,8 +26,17 @@ const CartForm = (props) => {
               alt={`Image of ${cartDetails[item].name}`}
             /></td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].name}</td>
-            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].quantity}</td>
-            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].formattedValue}</td>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <input
+                type="number"
+                name="qty"
+                id="qty"
+                value={cartDetails[item].quantity}
+                onChange={(event) => { setItemQuantity(cartDetails[item].sku, event.target.value) }}
+                className="w-12"
+              />
+            </td>
+            <td className="w-24 px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].formattedValue}</td>
           </tr>
         )
       })}
