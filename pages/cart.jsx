@@ -48,7 +48,7 @@ const Cart = () => {
 
   return (
     <Layout>
-      <div className="lg:mx-24 lg:my-12">
+      <div className="lg:mx-96 lg:my-12">
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
           <div className="inline-block min-w-full shadow rounded overflow-hidden">
             <table className="lg:min-w-full lg:leading-normal">

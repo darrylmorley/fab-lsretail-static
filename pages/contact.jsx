@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 const Contact = () => {
   return (
     <Layout>
-      <main className="my-8 px-40">
+      <main className="my-12 mx-96 px-40">
         <h2 className="mb-4 font-bold text-2xl">Contact Us</h2>
         <p>Tel: 01527831261</p>
         <p>Email: info@shootingsuppliesltd.co.uk</p>
