@@ -20,6 +20,14 @@ const Product = (props) => {
     unitPrice: Item.Prices.ItemPrice[0].amount,
   }
 
+  const productDescriptionLong = () => {
+    return { __html: product.description }
+  }
+
+  const productDescriptionShort = () => {
+    return { __html: product.shortDescription }
+  }
+
   return (
     <Layout>
       <div className="lg:my-12">
@@ -44,7 +52,7 @@ const Product = (props) => {
                 value: product.price,
                 currency: product.currency,
               })}</p>
-              <p className="lg:font-medium">{product.shortDescription}</p>
+              <div className="font-medium" dangerouslySetInnerHTML={productDescriptionShort()}></div>
               <button
                 onClick={() => addItem(product)}
                 aria-label={`Add ${product.name} to your cart`}
@@ -63,13 +71,11 @@ const Product = (props) => {
         <div className="lg:mx-96">
           <h3 className="lg:text-2xl lg:font-black lg:mb-4">About {product.name}</h3>
           <section>
-            <p className="font-medium">
-              {product.description}
-            </p>
+            <div className="font-medium" dangerouslySetInnerHTML={productDescriptionLong()}></div>
           </section>
         </div>
       </div>
-    </Layout>
+    </Layout >
   )
 }
 
