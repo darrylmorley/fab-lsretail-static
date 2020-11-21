@@ -3,12 +3,14 @@ import Nav from '../components/Nav'
 import Banner from '../components/Banner'
 import BannerBottom from '../components/BannerBottom'
 import Footer from '../components/Footer'
+import HomeModal from '../components/Modal'
 
 export default function Home() {
   return (
     <div>
       <Nav />
       {/* <Banner /> */}
+      <HomeModal />
       <div id="app-modal" />
       <main className="mx-96 my-24 flex justify-center" id="modal">
         <section className="grid grid-cols-3 gap-2">
