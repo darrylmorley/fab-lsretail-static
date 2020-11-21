@@ -12,7 +12,7 @@ const ProductCard = (props) => {
       <div className="lg:mx-8 lg:my-8 lg:w-64 lg:overflow-hidden flex flex-col rounded lg:shadow-lg lg:border-2">
         <Link as={`/product/${slug}`} href={`/product?slug=${slug}-${item.itemID}`}>
           <a>
-            <div className="lg:flex lg:justify-center">
+            <div className="p-4 lg:flex lg:justify-center">
               {item.Images &&
                 <Image
                   src={`${item.Images.Image.baseImageURL}/w_250/${item.Images.Image.publicID}.jpg`}
