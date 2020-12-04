@@ -3,8 +3,8 @@ import Link from 'next/link'
 const Footer = () => {
   return (
     <div className="bg-black">
-      <footer className="mx-96 py-8 text-white">
-        <div className="grid gap-4 grid-cols-4">
+      <footer className="mx-60 py-8 text-white">
+        <div className="grid gap-2 grid-cols-4">
           <div>
             <Link href="/">
               <a><img src="/logos/FAB-logo.png" alt="FAB Defense Logo" width="100" className="mb-4" /></a>
@@ -47,7 +47,7 @@ const Footer = () => {
             </address>
             <ul className="mt-2">
               <li><a href="tel:+441527831261" className="hover:text-fabred">T: 01527831261</a></li>
-              <li><a href="mailto:info@shootingsuppliesltd.co.uk" className="hover:text-fabred">E: info@shootingsuppliesltd.co.uk</a></li>
+              <li><a href="mailto:info@shootingsuppliesltd.co.uk" className="hover:text-fabred">info@shootingsuppliesltd.co.uk</a></li>
             </ul>
           </div>
         </div>

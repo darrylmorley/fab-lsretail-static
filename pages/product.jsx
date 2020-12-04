@@ -30,33 +30,31 @@ const Product = (props) => {
 
   return (
     <Layout>
-      <div className="lg:my-12">
-        <div className="lg:mx-96 lg:mb-24 grid grid-cols-2 gap-4">
+      <div className="mt-16 mx-60">
+        <div className="grid grid-cols-2 gap-1">
 
-          <div className="mr-2">
-            <h1 className="lg:mb-16 lg:font-black lg:text-3xl uppercase">{product.name}</h1>
-            <div className="lg:flex lg:justify-center">
-              <img src={product.image} alt={`Image of the ${product.name}`} />
-              {/* <Image
+          <div className="flex justify-start">
+            <img src={product.image} alt={`Image of the ${product.name}`} width="420" className="p-4 shadow-lg rounded max-w-full h-auto align-middle border-none" />
+            {/* <Image
                 src={product.image}
                 alt={`Photo of ${product.name}`}
                 width={500}
                 height={500}
               /> */}
-            </div>
           </div>
 
           <div>
-            <div className="lg:ml-12">
-              <p className="lg:mb-8 lg:font-black lg:text-3xl uppercase lg:mb-2">{formatCurrencyString({
-                value: product.price,
-                currency: product.currency,
-              })}</p>
-              <div className="font-medium" dangerouslySetInnerHTML={productDescriptionShort()}></div>
+            <h1 className="font-black text-3xl uppercase">{product.name}</h1>
+            <p className="my-4 font-black text-3xl uppercase mb-2">{formatCurrencyString({
+              value: product.price,
+              currency: product.currency,
+            })}</p>
+            <div className="my-4 font-medium" dangerouslySetInnerHTML={productDescriptionShort()}></div>
+            <div className="mt-16">
               <button
                 onClick={() => addItem(product)}
                 aria-label={`Add ${product.name} to your cart`}
-                className="lg:my-8 lg:p-2 lg:bg-fabred lg:text-white lg:font-bold lg:rounded lg:mr-2"
+                className="p-2 bg-fabred text-white font-bold rounded mr-2"
               >
                 Add to Cart
               </button>
@@ -68,12 +66,13 @@ const Product = (props) => {
             </div>
           </div>
         </div>
-        <div className="lg:mx-96">
-          <h3 className="lg:text-2xl lg:font-black lg:mb-4">About {product.name}</h3>
-          <section>
-            <div className="font-medium" dangerouslySetInnerHTML={productDescriptionLong()}></div>
-          </section>
-        </div>
+      </div>
+
+      <div className="mx-60 mb-24 mt-12 p-4 shadow-lg rounded max-w-full h-auto border-none">
+        <h3 className="mx-4 my-4 text-2xl font-black">{product.name} FULL DESCRIPTION</h3>
+        <section>
+          <div className="mx-4 my-4 prose font-medium" dangerouslySetInnerHTML={productDescriptionLong()}></div>
+        </section>
       </div>
     </Layout >
   )

@@ -9,21 +9,21 @@ const ProductCard = (props) => {
 
   return (
     <>
-      <div className="lg:mx-8 lg:my-8 lg:w-64 lg:overflow-hidden flex flex-col rounded lg:shadow-lg lg:border-2">
+      <div className="mx-8 my-4 w-56 overflow-hidden flex flex-col rounded shadow-lg border-2">
         <Link as={`/product/${slug}`} href={`/product?slug=${slug}-${item.itemID}`}>
           <a>
-            <div className="p-4 lg:flex lg:justify-center">
+            <div className="p-4 object-center object-scale-down">
               {item.Images &&
                 <Image
                   src={`${item.Images.Image.baseImageURL}/w_250/${item.Images.Image.publicID}.jpg`}
                   alt={`Photo of ${item.description.image}`}
-                  width={250}
-                  height={250}
+                  width={200}
+                  height={200}
                 />}
             </div>
-            <div className="lg:p-4 bg-black text-white font-bold uppercase">
+            <div className="h-full p-4 bg-black text-white font-bold uppercase">
               <h2>{item.description}</h2>
-              <p className="lg:mt-4 lg:text-lg">£{item.Prices.ItemPrice[0].amount}</p>
+              <p className="mt-4 text-lg">£{item.Prices.ItemPrice[0].amount}</p>
             </div>
           </a>
         </Link>

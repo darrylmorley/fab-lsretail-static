@@ -1,12 +1,17 @@
 import Layout from '../components/Layout'
 import ProductCard from '../components/ProductCard'
 import ProductFilter from '../components/ProductFilter'
-import { getCategories, getItems } from './api/lightspeed'
+import { getCategories, getItems, getMatrixItems } from './api/lightspeed'
 import { useState, useEffect } from 'react'
+import { isStyledComponent } from 'styled-components'
 
 const Products = (props) => {
-  const { Item } = props.items
+  const { singleItems } = props
+  const { ItemMatrix } = props.matrixItems
   const { Category } = props.categories
+  const items = [...singleItems, ...ItemMatrix]
+
+  console.log('All Items', items)
 
   const [checkedInputs, setCheckedInputs] = useState({})
 
@@ -18,18 +23,15 @@ const Products = (props) => {
     console.log('Checked Inputs', checkedInputs)
   }, [checkedInputs])
 
-  console.log(typeof Item)
-  console.log(checkedInputs)
-
   return (
     <Layout>
-      <div className="flex mx-96 mt-14">
+      <div className="flex mx-60 mt-8">
         <div className="w-1/4">
           <ProductFilter category={Category} handleInputChange={handleInputChange} checkedInputs={checkedInputs} />
         </div>
         <div className="w-3/4">
-          <div className="lg:grid grid-cols-3 gap-2 lg:my-12 lg:justify-center">
-            {Item.map(item => {
+          <div className="grid grid-cols-3 gap-4 my-12 flex justify-center">
+            {items.map(item => {
               if (Object.keys(checkedInputs).length < 1 || Object.keys(checkedInputs).every(value => checkedInputs[value] === false)) {
                 return <ProductCard item={item} key={item.itemID} />
               }
@@ -50,9 +52,24 @@ const Products = (props) => {
 }
 
 export async function getServerSideProps() {
+  // Get Item Data
   const itemData = await getItems()
   const items = await itemData.data
 
+  // Get Matrix Items
+  const matrixItemData = await getMatrixItems()
+  const matrixItems = await matrixItemData.data
+
+  // Filter Single Items
+  let singleItems = []
+
+  items.Item.map(item => {
+    if (item.itemMatrixID == 0) {
+      singleItems.push(item)
+    }
+  })
+
+  // Get & Sort Category Data
   const categoriesToFetch = []
 
   const findCategories = items.Item.map(item => {
@@ -64,7 +81,8 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      items,
+      singleItems,
+      matrixItems,
       categories
     }
   }
