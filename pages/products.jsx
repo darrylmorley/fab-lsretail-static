@@ -31,13 +31,13 @@ const Products = (props) => {
           <div className="grid grid-cols-3 gap-4 my-12 flex justify-center">
             {items.map(item => {
               if (Object.keys(checkedInputs).length < 1 || Object.keys(checkedInputs).every(value => checkedInputs[value] === false)) {
-                return <ProductCard item={item} key={item.itemID} />
+                return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />
               }
               for (const [key, value] of Object.entries(checkedInputs)) {
                 if (value === true) {
                   if (item.categoryID === key) {
                     console.log(item)
-                    return <ProductCard item={item} key={item.itemID} />
+                    return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />
                   }
                 }
               }
