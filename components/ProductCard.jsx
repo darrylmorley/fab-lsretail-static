@@ -7,6 +7,8 @@ const ProductCard = (props) => {
   const name = item.description
   const slug = slugify(item.description).toLocaleLowerCase()
 
+  console.log('Item from ProductCard', item)
+
   return (
     <>
       <div className="mx-8 my-4 w-56 overflow-hidden flex flex-col rounded shadow-lg border-2">
@@ -23,7 +25,7 @@ const ProductCard = (props) => {
             </div>
             <div className="h-full p-4 bg-black text-white font-bold uppercase">
               <h2>{item.description}</h2>
-              <p className="mt-4 text-lg">£{item.Prices.ItemPrice[0].amount}</p>
+              <p className="mt-4 text-lg align-bottom">£{item.Prices.ItemPrice[0].amount}</p>
             </div>
           </a>
         </Link>

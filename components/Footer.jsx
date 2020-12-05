@@ -53,7 +53,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="p-4 flex items-center justify-center bg-fabgrey text-white text-sm">
-        <p>Shooting Supplies Ltd, All rights Reserved.</p>
+        <p>Shooting Supplies Ltd, All rights Reserved. {new Date().getFullYear()}</p>
       </div>
     </div>
 

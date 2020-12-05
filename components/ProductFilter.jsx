@@ -5,7 +5,7 @@ const ProductFilter = (props) => {
   const { category, handleInputChange, checkedInputs } = props
 
   return (
-    <div className="text-black my-24">
+    <div className="text-black my-16">
       <h4 className="p-2 border-b-2 border-r-2 font-bold">Filter By</h4>
       <div className="p-2 border-r-2">
         <h5 className="mb-2">Category</h5>
@@ -13,7 +13,7 @@ const ProductFilter = (props) => {
           return (
             <div key={cat.categoryID}>
               <input type="checkbox" id={cat.categoryID} value={cat.categoryID} checked={checkedInputs[cat.name]} onChange={handleInputChange} />
-              <label key={cat.categoryID} className="ml-2" htmlFor={cat.categoryID}>{cat.name}</label>
+              <label key={cat.categoryID} className="ml-2 hover:fabred" htmlFor={cat.categoryID}>{cat.name}</label>
             </div>
           )
         })}

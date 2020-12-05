@@ -1,4 +1,5 @@
 // import Head from 'next/head'
+import CookieConsent from "react-cookie-consent";
 import Layout from '../components/Layout'
 import BannerBottom from '../components/BannerBottom'
 import HomeModal from '../components/Modal'
@@ -8,6 +9,16 @@ export default function Home() {
     <Layout>
       {/* <Banner /> */}
       <HomeModal />
+      <CookieConsent
+        location="bottom"
+        buttonText="Okay"
+        cookieName="fab-cart"
+        style={{ background: "#2B373B" }}
+        buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+        expires={150}
+      >
+        This website uses cookies for functionality and user experience.{" "}
+      </CookieConsent>
       <div id="app-modal" />
       <main className="mx-60 mt-32 flex justify-center" id="modal">
         <section className="grid grid-cols-3 gap-2">

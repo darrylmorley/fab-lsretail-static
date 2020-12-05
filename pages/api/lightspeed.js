@@ -29,7 +29,7 @@ export async function getItem(itemID) {
 
 export async function getMatrixItems() {
   let axiosConfig = await getHeader()
-  return axios.get(`ItemMatrix.json?manufacturerID=55&load_relations=["Category", "Images", "CustomFieldValues"]`, axiosConfig).catch(err => console.error(err.data))
+  return axios.get(`ItemMatrix.json?manufacturerID=55&load_relations=["Category", "Images", "CustomFieldValues", "Items"]`, axiosConfig).catch(err => console.error(err.data))
 }
 
 export async function createSale(newSale) {
