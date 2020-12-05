@@ -19,8 +19,6 @@ const Cart = () => {
     formattedTotalPrice,
   } = useShoppingCart()
 
-  console.log(cartDetails)
-
   useEffect(() => setCartEmpty(!cartCount), [cartCount])
 
   const clearCookie = () => {

@@ -48,6 +48,5 @@ export async function getInventory() {
       }
     )
   })
-  console.log('Inventory Products', products)
   return products
 }

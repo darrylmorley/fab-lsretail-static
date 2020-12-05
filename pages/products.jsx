@@ -36,7 +36,6 @@ const Products = (props) => {
               for (const [key, value] of Object.entries(checkedInputs)) {
                 if (value === true) {
                   if (item.categoryID === key) {
-                    console.log(item)
                     return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />
                   }
                 }

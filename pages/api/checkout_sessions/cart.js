@@ -9,13 +9,11 @@ const stripe = new Stripe(process.env.STRIPE_API_SECRET, {
 
 export default async function handler(req, res) {
   const inventory = await getInventory()
-  console.log(inventory)
 
   if (req.method === 'POST') {
     try {
       // Validate the cart details that were sent from the client.
       const cartItems = req.body
-      console.log('cart items:', cartItems)
       const line_items = validateCartItems(inventory, cartItems)
       // Create Checkout Sessions from body params.
       const params = {

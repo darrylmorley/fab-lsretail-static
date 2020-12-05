@@ -45,10 +45,7 @@ ResultPage.getInitialProps = async ({ query, req }) => {
       const parseCartDetails = JSON.parse(cart)
       const cartDetails = parseCartDetails.cartDetails
 
-      console.log("Cart Details =", cartDetails)
-
       const saleLines = Object.keys(cartDetails).map(item => {
-        console.log("Item = ", item)
         return {
           "SaleLine": [
             {

@@ -12,8 +12,6 @@ const Product = (props) => {
   const { addItem, cartCount } = useShoppingCart()
   const Item = props.item.Item ? props.item.Item : props.item.ItemMatrix
 
-  console.log(Item)
-
   const [checkedInputs, setCheckedInputs] = useState({})
 
   const handleInputChange = (event) => {
@@ -176,8 +174,6 @@ export async function getServerSideProps(ctx) {
   if (ctx.query.matrix === 'true') {
     const data = await getMatrixItem(id)
     const item = await data.data
-
-    console.log(item)
 
     return {
       props: {
