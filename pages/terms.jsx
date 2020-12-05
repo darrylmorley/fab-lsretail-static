@@ -1,13 +1,12 @@
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
+import Layout from '../components/Layout'
 
 const Terms = () => {
   return (
-    <div>
-      <Nav />
-      <main></main>
-      <Footer />
-    </div>
+    <Layout>
+      <div>
+        Terms & Conditions
+      </div>
+    </Layout>
   )
 }
 

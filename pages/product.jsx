@@ -37,8 +37,17 @@ const Product = (props) => {
   }
 
   function getSingleProductFromMatrix(id) {
-    for (const [key, value] in Item.Items) {
-      console.log(key, value, id)
+    const result = Item.Items.Item.filter(obj => obj.itemID == id)
+    return {
+      name: result[0].description,
+      description: result[0].ItemECommerce ? result[0].ItemECommerce.longDescription : '',
+      shortDescription: result[0].ItemECommerce ? result[0].ItemECommerce.shortDescription : '',
+      sku: result[0].customSku,
+      price: result[0].Prices.ItemPrice[0].amount.replace('.', ''),
+      currency: 'GBP',
+      image: result[0].Images ? `${result[0].Images.Image.baseImageURL}/w_250/${result[0].Images.Image.publicID}.jpg` : product.image,
+      itemID: result[0].itemID,
+      unitPrice: result[0].Prices.ItemPrice[0].amount,
     }
   }
 

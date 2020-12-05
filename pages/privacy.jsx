@@ -1,13 +1,12 @@
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
+import Layout from '../components/Layout'
 
 const Privacy = () => {
   return (
-    <div>
-      <Nav />
-      <main></main>
-      <Footer />
-    </div>
+    <Layout>
+      <div>
+        Privacy
+      </div>
+    </Layout>
   )
 }
 
