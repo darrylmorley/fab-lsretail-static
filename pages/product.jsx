@@ -3,7 +3,9 @@ import Layout from '../components/Layout'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { getItem, getMatrixItem } from './api/lightspeed'
+import { useState, useEffect } from 'react'
 import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
+import MatrixFilter from '../components/MatrixFilter'
 
 const Product = (props) => {
   const router = useRouter()
@@ -11,6 +13,16 @@ const Product = (props) => {
   const Item = props.item.Item ? props.item.Item : props.item.ItemMatrix
 
   console.log(Item)
+
+  const [checkedInputs, setCheckedInputs] = useState({})
+
+  const handleInputChange = (event) => {
+    setCheckedInputs([event.target.value])
+  }
+
+  useEffect(() => {
+    console.log('Checked Inputs', checkedInputs)
+  }, [checkedInputs])
 
   const product = {
     name: Item.description,
@@ -24,12 +36,10 @@ const Product = (props) => {
     unitPrice: Item.Prices.ItemPrice[0].amount,
   }
 
-  const productDescriptionLong = () => {
-    return { __html: product.description }
-  }
-
-  const productDescriptionShort = () => {
-    return { __html: product.shortDescription }
+  function getSingleProductFromMatrix(id) {
+    for (const [key, value] in Item.Items) {
+      console.log(key, value, id)
+    }
   }
 
   // Return Matrix Item
@@ -45,12 +55,6 @@ const Product = (props) => {
 
               <div className="flex justify-start">
                 <img src={product.image} alt={`Image of the ${product.name}`} width="420" className="p-4 shadow-lg rounded max-w-full h-auto align-middle border-none" />
-                {/* <Image
-                  src={product.image}
-                  alt={`Photo of ${product.name}`}
-                  width={500}
-                  height={500}
-                /> */}
               </div>
 
               <div>
@@ -59,11 +63,19 @@ const Product = (props) => {
                   value: product.price,
                   currency: product.currency,
                 })}</p>
-                <div className="my-4 font-medium" dangerouslySetInnerHTML={productDescriptionShort()}></div>
-                <div className="mt-10">
+                <div className="my-4 font-medium" dangerouslySetInnerHTML={{ __html: product.shortDescription }}></div>
+                <MatrixFilter item={Item} handleInputChange={handleInputChange} checkedInputs={checkedInputs} />
+                <div className="mt-8">
+                  <button
+                    onClick={() => addItem(getSingleProductFromMatrix(checkedInputs))}
+                    aria-label={`Add ${product.name} to your cart`}
+                    className="p-2 bg-fabred text-white font-bold rounded mr-2"
+                  >
+                    Add to Cart
+                </button>
                   {cartCount > 0 ? (
                     <Link href="/cart">
-                      <button className="lg:my-8 lg:p-2 lg:bg-fabred lg:text-white lg:font-bold lg:rounded">View Cart</button>
+                      <button className="p-2 bg-fabred text-white font-bold rounded">View Cart</button>
                     </Link>
                   ) : ''}
                 </div>
@@ -74,7 +86,7 @@ const Product = (props) => {
           <div className="mx-60 mb-24 mt-12 p-4 shadow-lg rounded max-w-full h-auto border-none">
             <h3 className="mx-4 my-4 text-2xl font-black">{product.name} FULL DESCRIPTION</h3>
             <section>
-              <div className="mx-4 my-4 prose font-medium" dangerouslySetInnerHTML={productDescriptionLong()}></div>
+              <div className="mx-4 my-4 prose font-medium" dangerouslySetInnerHTML={{ __html: product.description }}></div>
             </section>
           </div>
         </div>
@@ -82,6 +94,7 @@ const Product = (props) => {
     )
   }
 
+  // Return Single Item
   if (Item.itemMatrixID == 0) {
     return (
       <Layout>
@@ -94,12 +107,6 @@ const Product = (props) => {
 
               <div className="flex justify-start">
                 <img src={product.image} alt={`Image of the ${product.name}`} width="420" className="p-4 shadow-lg rounded max-w-full h-auto align-middle border-none" />
-                {/* <Image
-                  src={product.image}
-                  alt={`Photo of ${product.name}`}
-                  width={500}
-                  height={500}
-                /> */}
               </div>
 
               <div>
@@ -108,10 +115,10 @@ const Product = (props) => {
                   value: product.price,
                   currency: product.currency,
                 })}</p>
-                <div className="my-4 font-medium" dangerouslySetInnerHTML={productDescriptionShort()}></div>
+                <div className="my-4 font-medium" dangerouslySetInnerHTML={{ __html: product.shortDescription }}></div>
                 <p><span className="font-medium">SKU:</span>{product.sku}</p>
                 <p><span className="font-medium">STOCK QTY:</span> {Item.ItemShops.ItemShop[0].qoh}</p>
-                <div className="mt-10">
+                <div className="mt-8">
                   {Item.ItemShops.ItemShop[0].qoh > 0 &&
                     <button
                       onClick={() => addItem(product)}
@@ -133,7 +140,7 @@ const Product = (props) => {
                   }
                   {cartCount > 0 ? (
                     <Link href="/cart">
-                      <button className="lg:my-8 lg:p-2 lg:bg-fabred lg:text-white lg:font-bold lg:rounded">View Cart</button>
+                      <button className="p-2 bg-fabred text-white font-bold rounded">View Cart</button>
                     </Link>
                   ) : ''}
                 </div>
@@ -144,7 +151,7 @@ const Product = (props) => {
           <div className="mx-60 mb-24 mt-12 p-4 shadow-lg rounded max-w-full h-auto border-none">
             <h3 className="mx-4 my-4 text-2xl font-black">{product.name} FULL DESCRIPTION</h3>
             <section>
-              <div className="mx-4 my-4 prose font-medium" dangerouslySetInnerHTML={productDescriptionLong()}></div>
+              <div className="mx-4 my-4 prose font-medium" dangerouslySetInnerHTML={{ __html: product.description }}></div>
             </section>
           </div>
         </div>
@@ -156,9 +163,6 @@ const Product = (props) => {
 export async function getServerSideProps(ctx) {
   let { query: { slug } } = ctx
   const id = slug ? parseInt(slug.split('-').pop()) : ctx.query.id
-
-  console.log(id)
-  console.log(ctx.query)
 
   if (ctx.query.matrix === 'true') {
     const data = await getMatrixItem(id)
@@ -186,6 +190,4 @@ export async function getServerSideProps(ctx) {
 }
 
 export default Product
-
-// const { Item } = data
 
