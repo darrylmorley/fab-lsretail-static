@@ -1,9 +1,8 @@
 import Layout from '../components/Layout'
 import ProductCard from '../components/ProductCard'
-import ProductFilter from '../components/ProductFilter'
+import CategoryFilter from '../components/CategoryFilter'
 import { getCategories, getItems, getMatrixItems } from './api/lightspeed'
 import { useState, useEffect } from 'react'
-import { isStyledComponent } from 'styled-components'
 
 const Products = (props) => {
   const { singleItems } = props
@@ -11,29 +10,29 @@ const Products = (props) => {
   const { Category } = props.categories
   const items = [...singleItems, ...ItemMatrix]
 
-  const [checkedInputs, setCheckedInputs] = useState({})
+  const [checkedCategories, setCheckedCategories] = useState({})
 
   const handleInputChange = (event) => {
-    setCheckedInputs({ ...checkedInputs, [event.target.value]: event.target.checked })
+    setCheckedCategories({ ...checkedCategories, [event.target.value]: event.target.checked })
   }
 
   useEffect(() => {
-    console.log('Checked Inputs', checkedInputs)
-  }, [checkedInputs])
+    console.log('Checked Categories', checkedCategories)
+  }, [checkedCategories])
 
   return (
     <Layout>
       <div className="flex mx-60 mt-8">
         <div className="w-1/4">
-          <ProductFilter category={Category} handleInputChange={handleInputChange} checkedInputs={checkedInputs} />
+          <CategoryFilter category={Category} handleInputChange={handleInputChange} checkedCategories={checkedCategories} />
         </div>
         <div className="w-3/4">
           <div className="grid grid-cols-3 gap-4 my-12 flex justify-center">
             {items.map(item => {
-              if (Object.keys(checkedInputs).length < 1 || Object.keys(checkedInputs).every(value => checkedInputs[value] === false)) {
+              if (Object.keys(checkedCategories).length < 1 || Object.keys(checkedCategories).every(value => checkedCategories[value] === false)) {
                 return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />
               }
-              for (const [key, value] of Object.entries(checkedInputs)) {
+              for (const [key, value] of Object.entries(checkedCategories)) {
                 if (value === true) {
                   if (item.categoryID === key) {
                     return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />

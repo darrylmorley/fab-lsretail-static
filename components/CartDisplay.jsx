@@ -1,9 +1,10 @@
 import { useShoppingCart } from 'use-shopping-cart'
+import { TiDelete } from "react-icons/ti";
 import Image from 'next/image'
 
 const CartDisplay = (props) => {
   const {
-    cartCount,
+    removeItem,
     clearCart,
     cartDetails,
     redirectToCheckout,
@@ -11,30 +12,37 @@ const CartDisplay = (props) => {
   } = useShoppingCart()
 
   return (
-    <div className="absolute z-10 mt-12 right-20">
-      <div className="w-64 border-2 border-fabred rounded-lg bg-white">
-        <table>
-          <tbody>
+    <div className="absolute z-10 mt-4 right-20">
+      <div className="w-64 border-4 border-fabred rounded-lg bg-white">
+        <table className="w-full">
+          <tbody className="flex flex-col">
             {Object.keys(cartDetails).map(item => {
               return (
-                <tr key={cartDetails[item].sku} className="border-b-2 border-grey-400">
-                  <td className="text-sm">
+                <tr key={cartDetails[item].sku} className="p-2 mt-2 flex space-x-8 items-center">
+                  <td className="text-sm p-2">
                     <Image
                       src={cartDetails[item].image}
                       width={80}
                       height={80}
                       alt={`Image of ${cartDetails[item].name}`}
-                      className="rounded-lg"
                     />
                   </td>
-                  <td className="px-2 py-2 text-sm text-black font-medium">{cartDetails[item].quantity}</td>
-                  <td className="px-2 py-2 text-sm text-black font-medium">{cartDetails[item].formattedValue}</td>
+                  <td className="text-sm text-black font-medium">{cartDetails[item].quantity}</td>
+                  <td className="text-sm text-black font-medium">{cartDetails[item].formattedValue}</td>
+                  <td>
+                    <button
+                      onClick={() => removeItem(cartDetails[item].sku)}
+                      aria-label={`Remove ${cartDetails[item].name} from your cart`}
+                      className="text-black"
+                    >
+                      <TiDelete size="1em" />
+                    </button>
+                  </td>
                 </tr>
               )
             })}
           </tbody>
         </table>
-          )
       </div>
     </div >
   )
