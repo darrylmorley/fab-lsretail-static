@@ -7,12 +7,10 @@ const ProductCard = (props) => {
   const name = item.description
   const slug = slugify(item.description).toLocaleLowerCase()
 
-  console.log('Item from ProductCard', item)
-
   return (
     <>
-      <div className="mx-8 my-4 w-56 overflow-hidden flex flex-col rounded shadow-lg border-2">
-        <Link as={`/product/${slug}`} href={`/product?slug=${slug}-${item.itemID}`}>
+      <div className="mx-8 my-4 w-56 overflow-hidden flex flex-col rounded shadow-lg border-2" key={item.itemID ? item.itemID : item.itemMatrixID}>
+        <Link as={`/product/${slug}`} href={item.itemID ? `/product?slug=${slug}-${item.itemID}` : `/product?matrix=true&slug=${slug}-${item.itemMatrixID}`}>
           <a>
             <div className="p-4 object-center object-scale-down">
               {item.Images &&

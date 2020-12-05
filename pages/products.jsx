@@ -11,8 +11,6 @@ const Products = (props) => {
   const { Category } = props.categories
   const items = [...singleItems, ...ItemMatrix]
 
-  console.log('All Items', items)
-
   const [checkedInputs, setCheckedInputs] = useState({})
 
   const handleInputChange = (event) => {
