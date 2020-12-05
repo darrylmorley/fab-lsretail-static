@@ -57,7 +57,7 @@ const Product = (props) => {
       <Layout>
         <div>
           <div className="mx-60">
-            <button className="mt-2 p-2 bg-black text-white text-sm rounded" onClick={() => router.back()}>Back</button>
+            <button className="my-4 p-2 bg-black text-white text-sm rounded" onClick={() => router.back()}>Back</button>
           </div>
           <div className="mt-4 mx-60">
             <div className="grid grid-cols-2 gap-1">

@@ -44,5 +44,5 @@ export async function createSale(newSale) {
 
 export async function getCategories(categoryID) {
   let axiosConfig = await getHeader()
-  return axios.get(`Category.json?categoryID=IN,${categoryID}`, axiosConfig).catch(err => console.error(err.data))
+  return axios.get(`Category.json?categoryID=IN,${categoryID}&orderby=name`, axiosConfig).catch(err => console.error(err.data))
 }
