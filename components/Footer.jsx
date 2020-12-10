@@ -24,9 +24,15 @@ const Footer = () => {
           <div>
             <h3 className="mb-2 font-bold text-lg">Social</h3>
             <ul>
-              <li className="hover:text-fabred">Facebook</li>
-              <li className="hover:text-fabred">Instagram</li>
-              <li className="hover:text-fabred">Twitter</li>
+              <a href="https://www.facebook.com/ShootingSuppliesLTD" target="_blank">
+                <li className="hover:text-fabred">Facebook</li>
+              </a>
+              <a href="https://www.instagram.com/shootingsupplies" target="_blank">
+                <li className="hover:text-fabred">Instagram</li>
+              </a>
+              <a href="https://twitter.com/shootingsupplys" target="_blank">
+                <li className="hover:text-fabred">Twitter</li>
+              </a>
             </ul>
 
             <h3 className="mt-4 mb-2 font-bold text-lg">Legal</h3>

@@ -124,13 +124,18 @@ const Product = (props) => {
                 })}</p>
                 <div className="my-4 font-medium" dangerouslySetInnerHTML={{ __html: product.shortDescription }}></div>
                 <p><span className="font-medium">SKU:</span>{product.sku}</p>
-                <p><span className="font-medium">STOCK QTY:</span> {Item.ItemShops.ItemShop[0].qoh}</p>
+                {Item.ItemShops.ItemShop[0].qoh > 0 &&
+                  (<p><span className="font-medium">STOCK:</span> <span className="text-green-500 font-medium uppercase">Available</span></p>)
+                }
+                {Item.ItemShops.ItemShop[0].qoh == 0 &&
+                  (<p><span className="font-medium">STOCK:</span> <span className="text-red-500 font-medium uppercase">Out of Stock</span></p>)
+                }
                 <div className="mt-8">
                   {Item.ItemShops.ItemShop[0].qoh > 0 &&
                     <button
                       onClick={() => addItem(product)}
                       aria-label={`Add ${product.name} to your cart`}
-                      className="p-2 bg-fabred text-white font-bold rounded mr-2"
+                      className="p-2 bg-fabred focus:bg-red-400 text-white font-bold rounded mr-2"
                     >
                       Add to Cart
                 </button>
