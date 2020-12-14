@@ -25,7 +25,10 @@ const Products = (props) => {
     <Layout>
       <Head>
         <title>Products - FAB Defense (UK)</title>
-        <meta name="description" content="FAB Defense (UK) provide high quality weapon accessories." />
+        <meta name="description" content="FAB Defense Products | Bipods, Grips & More" />
+        <meta property="og:title" content="Products - FAB Defense (UK)" />
+        <meta property="og:description" content="FAB Defense Products | Bipods, Grips & More" />
+        <meta property="og:image" content="/logos/FAB-logo.png" />
       </Head>
       <div className="flex mx-60 mt-8">
         <div className="w-1/4">

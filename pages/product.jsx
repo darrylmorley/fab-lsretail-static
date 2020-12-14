@@ -63,6 +63,9 @@ const Product = (props) => {
         <Head>
           <title>{product.name} - FAB Defense (UK)</title>
           <meta name="description" content={product.description} />
+          <meta property="og:title" content={product.name} />
+          <meta property="og:description" content={product.description} />
+          <meta property="og:image" content={product.image} />
         </Head>
         <div>
           <div className="mx-60">
