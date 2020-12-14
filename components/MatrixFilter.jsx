@@ -6,10 +6,10 @@ const MatrixFilter = (props) => {
       <h5 className="mb-2 font-bold">Options</h5>
       <label htmlFor=""></label>
       <select name="options" id="options" className="border-2 border-black rounded" onChange={handleInputChange}>
-        <option selected diabled>Choose Colour</option>
+        <option selected disabled>Choose Colour</option>
         {item.Items.Item.map(item => {
           return (
-            <option value={item.itemID} className="text-sm" onSelect={checkedInputs[item.itemID]} >{item.description.split(' ').pop()}</option>
+            <option value={item.itemID} className="text-sm" onSelect={checkedInputs[item.itemID]} key={item.itemID}>{item.description.split(' ').pop()}</option>
           )
         })}
       </select>

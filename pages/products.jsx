@@ -17,7 +17,7 @@ const Products = (props) => {
   }
 
   useEffect(() => {
-    console.log('Checked Categories', checkedCategories)
+    // console.log('Checked Categories', checkedCategories)
   }, [checkedCategories])
 
   return (

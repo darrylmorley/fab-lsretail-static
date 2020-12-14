@@ -20,3 +20,4 @@ Created using Nextjs, Tailwind, Lightspeed Retail API and Stripe!
 - User login for fetch previous orders etc.
 - Finish mini cart display in nav
 - Add search
+- Display related images on matrix products

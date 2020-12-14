@@ -68,7 +68,7 @@ const Terms = () => {
         <p>3.7 All prices quoted on our website are in UK pounds and include Value Added Tax at the current rate.</p>
         <p>3.8 Once your order has been confirmed, changes may not be possible or may incur additional charges or delays.</p>
         <p>3.9 Once your order is complete your order shall be dispatched within 1-3 working days.</p>
-        <p>3.10 Only voucher codes obtained from th FAB Defense (UK) Website will be honoured. Any vouchers from this website that are over 6 months old can be considered expired and will not be accepted.</p>
+        <p>3.10 Only voucher codes obtained from the FAB Defense (UK) Website will be honoured. Any vouchers from this website that are over 6 months old can be considered expired and will not be accepted.</p>
 
         <hr className="my-4" />
 
@@ -76,9 +76,9 @@ const Terms = () => {
         <p>4.1 Goods will be dispatched from our store within 3 working days and any estimated dispatch date is an estimate, which can change without notice. Dispatch may be delayed in accordance with point 4.9.</p>
         <p>4.2 We will deliver goods within 1-3 working days of dispatch. Deliveries may be delayed in accordance with point 4.9.</p>
         <p>4.3 Your order may arrive in more than one delivery.</p>
-        <p>4.4 We can deliver our products anywhere in mainland Great Britain and Republic of Ireland.</p>
+        <p>4.4 We can deliver our products anywhere in mainland Great Britain</p>
         <p>4.5 We will only deliver goods to the address that matches the card used for payment. You must be at home to accept delivery of your order, which is between 7:30am and 10:00pm Monday-Friday.</p>
-        <p>4.6 If there is no one to accept the order on the scheduled delivery date the goods may be returned to the factory and we reserve the right to charge you an additional re-delivery charge.</p>
+        <p>4.6 If there is no one to accept the order on the scheduled delivery date the goods may be returned to the warehouse and we reserve the right to charge you an additional re-delivery charge.</p>
         <p>4.7 Please check the goods on delivery - any goods found to be missing or damaged should be notified to the delivery driver at the time of delivery or ourselves within two working days of delivery of the items.</p>
         <p>4.8 If the goods are lost or damaged please report this to us within two working days from the delivery day.</p>
         <p>4.9 Sometimes, for reasons beyond our control we may be prevented from delivering your goods as planned. These might include things such as accidents, breakdowns, fire, flood, storm, severe weather, acts of god, war, riot, civil commotion, malicious damage or the default of our suppliers. We are not responsible where this causes a delay or failure in delivering your goods.</p>
@@ -97,8 +97,8 @@ const Terms = () => {
         <p>5.7 We will refund all monies paid to us by you minus any postage / carriage within 30 days, less any costs due under this contract. Please see point 5.1 for exemptions.</p>
         <p>5.8 We reserve the right not to replace any item that has been fitted, as we will deem this acceptance of the goods.</p>
         <p>5.9 We will not be held liable for gunsmith fees or any other professional persons fees due to late, damaged or lost deliveries.</p>
-        <p>5.10 We are not liable for any loss earnings due to late, incorrect or lost deliveries.</p>
-        <p>.11 We reserve the right to refuse replacements on any damaged items reported to us outside of two working days from delivery. This cancellation policy does not affect your legal rights - for example, if goods are faulty or misdescribed.</p>
+        <p>5.10 We are not liable for any loss of earnings due to late, incorrect or lost deliveries.</p>
+        <p>5.11 We reserve the right to refuse replacements on any damaged items reported to us outside of two working days from delivery. This cancellation policy does not affect your legal rights - for example, if goods are faulty or misdescribed.</p>
 
         <hr className="my-4" />
 

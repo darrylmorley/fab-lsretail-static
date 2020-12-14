@@ -13,13 +13,19 @@ const Product = (props) => {
   const Item = props.item.Item ? props.item.Item : props.item.ItemMatrix
 
   const [checkedInputs, setCheckedInputs] = useState({})
+  const [image, setImage] = useState(``)
 
   const handleInputChange = (event) => {
     setCheckedInputs([event.target.value])
   }
 
   useEffect(() => {
-    console.log('Checked Inputs', checkedInputs)
+    async function getFabItem() {
+      const res = await fetch(`/api/item?itemID=${checkedInputs}`)
+      const { Item } = await res.json()
+      console.log(Item)
+    }
+    getFabItem()
   }, [checkedInputs])
 
   const product = {
