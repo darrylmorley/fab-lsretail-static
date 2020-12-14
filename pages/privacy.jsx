@@ -4,6 +4,10 @@ import Link from 'next/link'
 const Privacy = () => {
   return (
     <Layout>
+      <Head>
+        <title>Privacy - FAB Defense (UK)</title>
+        <meta name="description" content="At FAB Defense (UK) we take your privacy seriously. Please find our privacy policies below." />
+      </Head>
       <div className="mx-56 my-12">
         <h1 id="privacy" className="mb-4 font-black text-4xl">Privacy Policy</h1>
 

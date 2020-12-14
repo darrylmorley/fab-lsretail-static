@@ -3,10 +3,14 @@ import CookieConsent from "react-cookie-consent";
 import Layout from '../components/Layout'
 import BannerBottom from '../components/BannerBottom'
 import HomeModal from '../components/Modal'
+import Head from 'next/head'
 
 export default function Home() {
   return (
     <Layout>
+      <Head>
+        <title>FAB Defense (UK)</title>
+      </Head>
       {/* <Banner /> */}
       <HomeModal />
       <CookieConsent

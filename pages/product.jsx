@@ -6,6 +6,7 @@ import { getItem, getMatrixItem } from './api/lightspeed'
 import { useState, useEffect } from 'react'
 import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
 import MatrixFilter from '../components/MatrixFilter'
+import Head from 'next/head'
 
 const Product = (props) => {
   const router = useRouter()
@@ -59,6 +60,10 @@ const Product = (props) => {
   if (Item.itemMatrixID != 0) {
     return (
       <Layout>
+        <Head>
+          <title>{product.name} - FAB Defense (UK)</title>
+          <meta name="description" content={product.description} />
+        </Head>
         <div>
           <div className="mx-60">
             <button className="my-4 p-2 bg-black text-white text-sm rounded" onClick={() => router.back()}>Back</button>

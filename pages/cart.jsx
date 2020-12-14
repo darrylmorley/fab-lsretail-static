@@ -4,9 +4,7 @@ import { fetchPostJSON } from './api/api-helpers'
 import CartItems from '../components/cart/CartItems'
 import { setCookie, destroyCookie } from 'nookies'
 import Layout from '../components/Layout'
-import Link from 'next/link'
-
-
+import Head from 'next/head'
 
 const Cart = () => {
   const [loading, setLoading] = useState(false)
@@ -46,6 +44,9 @@ const Cart = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Cart - FAB Defense (UK)</title>
+      </Head>
       <div className="lg:mx-60 lg:my-12">
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
           <div className="inline-block min-w-full shadow rounded overflow-hidden">

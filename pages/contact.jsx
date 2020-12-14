@@ -1,8 +1,12 @@
 import Layout from '../components/Layout'
+import Head from 'next/head'
 
 const Contact = () => {
   return (
     <Layout>
+      <Head>
+        <title>Contact Us - FAB Defense (UK)</title>
+      </Head>
       <main className="my-12 mx-96 px-40">
         <h2 className="mb-4 font-bold text-2xl">Contact Us</h2>
         <p>Tel: 01527831261</p>

@@ -4,6 +4,7 @@ import PrintObject from '../components/PrintObject'
 import { createSale } from '../pages/api/lightspeed'
 import { useShoppingCart } from 'use-shopping-cart'
 import { parseCookies, destroyCookie } from 'nookies'
+import Head from 'next/head'
 
 const ResultPage = (props) => {
   const router = useRouter()
@@ -18,6 +19,9 @@ const ResultPage = (props) => {
 
   return (
     <Layout title="Checkout Payment Result | Next.js + TypeScript Example">
+      <Head>
+        <title>Checkout Result - FAB Defense (UK)</title>
+      </Head>
       <div className="page-container">
         <h1>Checkout Payment Result</h1>
         <h2>Sale Reference: {saleID}</h2>

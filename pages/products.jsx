@@ -3,6 +3,7 @@ import ProductCard from '../components/ProductCard'
 import CategoryFilter from '../components/CategoryFilter'
 import { getCategories, getItems, getMatrixItems } from './api/lightspeed'
 import { useState, useEffect } from 'react'
+import Head from 'next/head'
 
 const Products = (props) => {
   const { singleItems } = props
@@ -22,6 +23,10 @@ const Products = (props) => {
 
   return (
     <Layout>
+      <Head>
+        <title>Products - FAB Defense (UK)</title>
+        <meta name="description" content="FAB Defense (UK) provide high quality weapon accessories." />
+      </Head>
       <div className="flex mx-60 mt-8">
         <div className="w-1/4">
           <CategoryFilter category={Category} handleInputChange={handleInputChange} checkedCategories={checkedCategories} />
