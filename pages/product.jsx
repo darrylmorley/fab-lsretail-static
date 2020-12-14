@@ -116,6 +116,10 @@ const Product = (props) => {
   if (Item.itemMatrixID == 0) {
     return (
       <Layout>
+        <Head>
+          <title>{product.name} - FAB Defense (UK)</title>
+          <meta name="description" content={product.description} />
+        </Head>
         <div>
           <div className="mx-60">
             <button className="mt-2 p-2 bg-black text-white text-sm rounded" onClick={() => router.back()}>Back</button>
