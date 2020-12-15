@@ -36,9 +36,8 @@ const HomeModal = () => {
       >
 
         <h2 className="text-xl mb-4">Welcome to our site!</h2>
-        <p>This site is currently in development and may change, not all products are currently listed.</p>
-        <p className="mt-2">Please feel free to browse but you will not be able to buy anything at the moment.</p>
-        <p className="mt-2">We look forward to opening the site up fully very soon.</p>
+        <p>This site is currently in development and will change.</p>
+        <p className="mt-2">Please feel free to browse but you will be unable to buy anything at the moment.</p>
         <button onClick={closeModal} className="bg-fabred text-white mt-4 rounded p-2">Close</button>
       </Modal>
     </div>
