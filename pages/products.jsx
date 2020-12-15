@@ -1,9 +1,10 @@
+import Head from 'next/head'
+import { useState, useEffect } from 'react'
+import { getCategories, getItems, getMatrixItems } from './api/lightspeed'
+import { FaArrowCircleUp } from 'react-icons/fa';
 import Layout from '../components/Layout'
 import ProductCard from '../components/ProductCard'
 import CategoryFilter from '../components/CategoryFilter'
-import { getCategories, getItems, getMatrixItems } from './api/lightspeed'
-import { useState, useEffect } from 'react'
-import Head from 'next/head'
 
 const Products = (props) => {
   const { singleItems } = props
@@ -12,6 +13,25 @@ const Products = (props) => {
   const items = [...singleItems, ...ItemMatrix]
 
   const [checkedCategories, setCheckedCategories] = useState({})
+  const [showScroll, setShowScroll] = useState()
+
+  const checkScrollTop = () => {
+    if (!showScroll && window.pageYOffset > 200) {
+      setShowScroll(true)
+    } else if (showScroll && window.pageYOffset <= 200) {
+      setShowScroll(false)
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', checkScrollTop)
+  }, [showScroll])
+
+
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleInputChange = (event) => {
     setCheckedCategories({ ...checkedCategories, [event.target.value]: event.target.checked })
@@ -31,6 +51,11 @@ const Products = (props) => {
         <meta property="og:image" content="/logos/FAB-logo.png" />
       </Head>
       <div className="flex mx-60 mt-8">
+        <FaArrowCircleUp
+          className="scrollTop text-4xl"
+          onClick={scrollTop}
+          style={{ height: 40, display: showScroll ? 'flex' : 'none', position: 'fixed', bottom: '40px', right: '80px' }}
+        />
         <div className="w-1/4">
           <CategoryFilter category={Category} handleInputChange={handleInputChange} checkedCategories={checkedCategories} />
         </div>
