@@ -1,12 +1,11 @@
-import Image from 'next/image'
-import Layout from '../components/Layout'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { getItem, getMatrixItem } from './api/lightspeed'
+import { getItem, getMatrixItem } from '../api/lightspeed'
 import { useState, useEffect, useRef } from 'react'
 import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
-import MatrixFilter from '../components/MatrixFilter'
-import ProductImage from '../components/ProductImage'
+import Layout from '../../components/Layout'
+import MatrixFilter from '../../components/product/MatrixFilter'
+import ProductImage from '../../components/product/ProductImage'
 import Head from 'next/head'
 
 const Product = (props) => {
@@ -15,25 +14,26 @@ const Product = (props) => {
   // const Item = props.item.Item ? props.item.Item : props.item.ItemMatrix
   const { Item } = props.item
   const { ItemMatrix } = props.item
-  console.log({ Item })
-  const loaded = useRef(false);
 
   const [checkedInputs, setCheckedInputs] = useState({})
   const [image, setImage] = useState(
     Item ? `${Item.Images.Image.baseImageURL}/w_300/${Item.Images.Image.publicID}.jpg`
       : `${ItemMatrix.Images.Image.baseImageURL}/w_300/${ItemMatrix.Images.Image.publicID}.jpg`)
   const [item, setItem] = useState(Item ? Item : ItemMatrix)
+  const [matrixItemDetail, setMatrixItemDetail] = useState()
 
   const handleInputChange = (event) => {
     setCheckedInputs([event.target.value])
   }
 
+  const loaded = useRef(false);
+
   useEffect(() => {
     async function getFabItem() {
       const res = await fetch(`/api/item?itemID=${checkedInputs}`)
       const { Item } = await res.json()
-      console.log(Item)
       setImage(Item.Images ? `${Item.Images.Image.baseImageURL}/w_300/${Item.Images.Image.publicID}.jpg` : 'No Image Yet')
+      setMatrixItemDetail(Item)
     }
     if (loaded.current) {
       getFabItem()
@@ -43,8 +43,8 @@ const Product = (props) => {
   }, [checkedInputs])
 
   useEffect(() => {
-    console.log(image)
-  }, [image])
+    console.log(matrixItemDetail)
+  }, [matrixItemDetail])
 
   const product = {
     name: item.description,
@@ -93,7 +93,6 @@ const Product = (props) => {
 
               <div className="flex justify-center">
                 <ProductImage imageURL={image} />
-                {/* <img src={product.image} alt={`Image of the ${product.name}`} width="420" className="p-4 shadow-lg rounded max-w-full h-auto align-middle border-none" /> */}
               </div>
 
               <div>
@@ -103,12 +102,21 @@ const Product = (props) => {
                   currency: product.currency,
                 })}</p>
                 <div className="my-4 font-medium" dangerouslySetInnerHTML={{ __html: product.shortDescription }}></div>
+                {matrixItemDetail &&
+                  <p><span className="font-medium">SKU: {matrixItemDetail.customSku}</span></p>
+                }
+                {matrixItemDetail && matrixItemDetail.ItemShops.ItemShop[0].qoh > 0 &&
+                  <p><span className="font-medium">STOCK:</span> <span className="text-green-500 font-medium uppercase">Available</span></p>
+                }
+                {matrixItemDetail && matrixItemDetail.ItemShops.ItemShop[0].qoh == 0 &&
+                  <p><span className="font-medium">STOCK:</span> <span className="text-red-500 font-medium uppercase">Out of Stock</span></p>
+                }
                 <MatrixFilter item={item} handleInputChange={handleInputChange} checkedInputs={checkedInputs} />
                 <div className="mt-8">
                   <button
                     onClick={() => addItem(getSingleProductFromMatrix(checkedInputs))}
                     aria-label={`Add ${product.name} to your cart`}
-                    className="p-2 bg-fabred text-white font-bold rounded mr-2"
+                    className="p-2 bg-fabred focus:bg-red-400 text-white font-bold rounded mr-2"
                   >
                     Add to Cart
                 </button>
