@@ -3,18 +3,26 @@ import Layout from '../components/Layout'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { getItem, getMatrixItem } from './api/lightspeed'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
 import MatrixFilter from '../components/MatrixFilter'
+import ProductImage from '../components/ProductImage'
 import Head from 'next/head'
 
 const Product = (props) => {
   const router = useRouter()
   const { addItem, cartCount } = useShoppingCart()
-  const Item = props.item.Item ? props.item.Item : props.item.ItemMatrix
+  // const Item = props.item.Item ? props.item.Item : props.item.ItemMatrix
+  const { Item } = props.item
+  const { ItemMatrix } = props.item
+  console.log({ Item })
+  const loaded = useRef(false);
 
   const [checkedInputs, setCheckedInputs] = useState({})
-  const [image, setImage] = useState(``)
+  const [image, setImage] = useState(
+    Item ? `${Item.Images.Image.baseImageURL}/w_300/${Item.Images.Image.publicID}.jpg`
+      : `${ItemMatrix.Images.Image.baseImageURL}/w_300/${ItemMatrix.Images.Image.publicID}.jpg`)
+  const [item, setItem] = useState(Item ? Item : ItemMatrix)
 
   const handleInputChange = (event) => {
     setCheckedInputs([event.target.value])
@@ -25,24 +33,33 @@ const Product = (props) => {
       const res = await fetch(`/api/item?itemID=${checkedInputs}`)
       const { Item } = await res.json()
       console.log(Item)
+      setImage(Item.Images ? `${Item.Images.Image.baseImageURL}/w_300/${Item.Images.Image.publicID}.jpg` : 'No Image Yet')
     }
-    getFabItem()
+    if (loaded.current) {
+      getFabItem()
+    } else {
+      loaded.current = true;
+    }
   }, [checkedInputs])
 
+  useEffect(() => {
+    console.log(image)
+  }, [image])
+
   const product = {
-    name: Item.description,
-    description: Item.ItemECommerce ? Item.ItemECommerce.longDescription : '',
-    shortDescription: Item.ItemECommerce ? Item.ItemECommerce.shortDescription : '',
-    sku: Item.customSku,
-    price: Item.Prices.ItemPrice[0].amount.replace('.', ''),
+    name: item.description,
+    description: item.ItemECommerce ? item.ItemECommerce.longDescription : '',
+    shortDescription: item.ItemECommerce ? item.ItemECommerce.shortDescription : '',
+    sku: item.customSku,
+    price: item.Prices.ItemPrice[0].amount.replace('.', ''),
     currency: 'GBP',
-    image: `${Item.Images.Image.baseImageURL}/w_250/${Item.Images.Image.publicID}.jpg`,
-    itemID: Item.itemID,
-    unitPrice: Item.Prices.ItemPrice[0].amount,
+    image: image,
+    itemID: item.itemID,
+    unitPrice: item.Prices.ItemPrice[0].amount,
   }
 
   function getSingleProductFromMatrix(id) {
-    const result = Item.Items.Item.filter(obj => obj.itemID == id)
+    const result = item.Items.Item.filter(obj => obj.itemID == id)
     return {
       name: result[0].description,
       description: result[0].ItemECommerce ? result[0].ItemECommerce.longDescription : '',
@@ -50,14 +67,14 @@ const Product = (props) => {
       sku: result[0].customSku,
       price: result[0].Prices.ItemPrice[0].amount.replace('.', ''),
       currency: 'GBP',
-      image: result[0].Images ? `${result[0].Images.Image.baseImageURL}/w_250/${result[0].Images.Image.publicID}.jpg` : product.image,
+      image: image,
       itemID: result[0].itemID,
       unitPrice: result[0].Prices.ItemPrice[0].amount,
     }
   }
 
   // Return Matrix Item
-  if (Item.itemMatrixID != 0) {
+  if (item.itemMatrixID != 0) {
     return (
       <Layout>
         <Head>
@@ -74,8 +91,9 @@ const Product = (props) => {
           <div className="mt-4 mx-60">
             <div className="grid grid-cols-2 gap-1">
 
-              <div className="flex justify-start">
-                <img src={product.image} alt={`Image of the ${product.name}`} width="420" className="p-4 shadow-lg rounded max-w-full h-auto align-middle border-none" />
+              <div className="flex justify-center">
+                <ProductImage imageURL={image} />
+                {/* <img src={product.image} alt={`Image of the ${product.name}`} width="420" className="p-4 shadow-lg rounded max-w-full h-auto align-middle border-none" /> */}
               </div>
 
               <div>
@@ -85,7 +103,7 @@ const Product = (props) => {
                   currency: product.currency,
                 })}</p>
                 <div className="my-4 font-medium" dangerouslySetInnerHTML={{ __html: product.shortDescription }}></div>
-                <MatrixFilter item={Item} handleInputChange={handleInputChange} checkedInputs={checkedInputs} />
+                <MatrixFilter item={item} handleInputChange={handleInputChange} checkedInputs={checkedInputs} />
                 <div className="mt-8">
                   <button
                     onClick={() => addItem(getSingleProductFromMatrix(checkedInputs))}
@@ -116,7 +134,7 @@ const Product = (props) => {
   }
 
   // Return Single Item
-  if (Item.itemMatrixID == 0) {
+  if (item.itemMatrixID == 0) {
     return (
       <Layout>
         <Head>
@@ -130,8 +148,9 @@ const Product = (props) => {
           <div className="mt-4 mx-60">
             <div className="grid grid-cols-2 gap-1">
 
-              <div className="flex justify-start">
-                <img src={product.image} alt={`Image of the ${product.name}`} width="420" className="p-4 shadow-lg rounded max-w-full h-auto align-middle border-none" />
+              <div className="flex justify-center">
+                <ProductImage imageURL={image} />
+                {/* <img src={product.image} alt={`Image of the ${product.name}`} width="420" className="p-4 shadow-lg rounded max-w-full h-auto align-middle border-none" /> */}
               </div>
 
               <div>
@@ -142,14 +161,14 @@ const Product = (props) => {
                 })}</p>
                 <div className="my-4 font-medium" dangerouslySetInnerHTML={{ __html: product.shortDescription }}></div>
                 <p><span className="font-medium">SKU:</span>{product.sku}</p>
-                {Item.ItemShops.ItemShop[0].qoh > 0 &&
+                {item.ItemShops.ItemShop[0].qoh > 0 &&
                   (<p><span className="font-medium">STOCK:</span> <span className="text-green-500 font-medium uppercase">Available</span></p>)
                 }
-                {Item.ItemShops.ItemShop[0].qoh == 0 &&
+                {item.ItemShops.ItemShop[0].qoh == 0 &&
                   (<p><span className="font-medium">STOCK:</span> <span className="text-red-500 font-medium uppercase">Out of Stock</span></p>)
                 }
                 <div className="mt-8">
-                  {Item.ItemShops.ItemShop[0].qoh > 0 &&
+                  {item.ItemShops.ItemShop[0].qoh > 0 &&
                     <button
                       onClick={() => addItem(product)}
                       aria-label={`Add ${product.name} to your cart`}
@@ -158,7 +177,7 @@ const Product = (props) => {
                       Add to Cart
                 </button>
                   }
-                  {Item.ItemShops.ItemShop[0].qoh == 0 &&
+                  {item.ItemShops.ItemShop[0].qoh == 0 &&
                     <button
                       onClick={() => addItem(product)}
                       aria-label={`Add ${product.name} to your cart`}
