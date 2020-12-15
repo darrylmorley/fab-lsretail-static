@@ -10,6 +10,9 @@ const Layout = (props) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Nav />
+      <div className="p-2 flex justify-center text-white bg-fabgrey">
+        <p>Free Delivery on Orders over £50</p>
+      </div>
       <div className="flex-grow">
         {props.children}
       </div>
