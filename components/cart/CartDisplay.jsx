@@ -29,15 +29,6 @@ const CartDisplay = (props) => {
                   </td>
                   <td className="text-sm text-black font-medium">{cartDetails[item].quantity}</td>
                   <td className="text-sm text-black font-medium">{cartDetails[item].formattedValue}</td>
-                  <td>
-                    <button
-                      onClick={() => removeItem(cartDetails[item].sku)}
-                      aria-label={`Remove ${cartDetails[item].name} from your cart`}
-                      className="text-black"
-                    >
-                      <TiDelete size="1em" />
-                    </button>
-                  </td>
                 </tr>
               )
             })}

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import CartIcon from './cart/CartIcon'
 import { useShoppingCart } from 'use-shopping-cart'
-import CartDisplay from './CartDisplay'
+import CartDisplay from './cart/CartDisplay'
 
 const Nav = () => {
   const [cartDisplay, setCartDisplay] = useState(false)
