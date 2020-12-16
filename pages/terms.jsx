@@ -6,10 +6,10 @@ const Terms = () => {
   return (
     <Layout>
       <Head>
-        <title>Tersm & Conditions - FAB Defense (UK)</title>
+        <title>Terms & Conditions - FAB Defense (UK)</title>
         <meta name="description" content="At FAB Defense (UK) we aim to be transparent with you. You are able to read our terms and conditions here." />
       </Head>
-      <div className="mx-56 my-12">
+      <div className="mx-8 my-8 lg:mx-56 lg:my-12">
         <h1 id="about-us" className="mb-4 font-black text-4xl">Terms & Conditions</h1>
         <h2 className="mt-8 mb-4 font-black text-2xl">Links</h2>
         <h2 className="mt-4 mb-2 font-bold text-2xl">Terms & Conditions</h2>

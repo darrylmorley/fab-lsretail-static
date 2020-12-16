@@ -9,10 +9,10 @@ const ProductCard = (props) => {
 
   return (
     <>
-      <div className="mx-8 my-4 w-56 overflow-hidden flex flex-col rounded shadow-lg border-2 hover:border-fabred" key={item.itemID ? item.itemID : item.itemMatrixID}>
+      <div className="mx-8 my-4 lg:mx-8 lg:my-4 lg:w-56 lg:overflow-hidden lg:flex lg:flex-col rounded shadow-lg border-2 hover:border-fabred" key={item.itemID ? item.itemID : item.itemMatrixID}>
         <Link as={`/product/${slug}`} href={item.itemID ? `/product?slug=${slug}-${item.itemID}` : `/product?matrix=true&slug=${slug}-${item.itemMatrixID}`}>
           <a>
-            <div className="h-58 p-4 object-center object-scale-down">
+            <div className="flex justify-center lg:h-58 p-4 lg:object-center lg:object-scale-down">
               {item.Images &&
                 <Image
                   src={`${item.Images.Image.baseImageURL}/w_250/${item.Images.Image.publicID}.jpg`}

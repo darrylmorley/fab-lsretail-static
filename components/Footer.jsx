@@ -3,8 +3,22 @@ import Link from 'next/link'
 const Footer = () => {
   return (
     <div className="bg-black">
-      <footer className="mx-60 py-8 text-white">
-        <div className="grid gap-2 grid-cols-4">
+      <footer className="lg:mx-60 lg:py-8 lg:text-white">
+        <div className="lg:hidden text-white text-sm bg-fabgrey">
+          <ul className="p-2 flex justify-around">
+            <Link href="/terms">
+              <a>
+                <li>Terms</li>
+              </a>
+            </Link>
+            <Link href="/privacy">
+              <a>
+                <li>Privacy</li>
+              </a>
+            </Link>
+          </ul>
+        </div>
+        <div className="hidden lg:grid lg:gap-2 lg:grid-cols-4">
           <div>
             <Link href="/">
               <a><img src="/logos/FAB-logo.png" alt="FAB Defense Logo" width="100" className="mb-4" /></a>
@@ -58,7 +72,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <div className="p-4 flex items-center justify-center bg-fabgrey text-white text-sm">
+      <div className="p-4 flex items-center justify-center bg-fabgrey text-gray-300 lg:text-white lg:text-sm text-xs">
         <p>Shooting Supplies Ltd, All rights Reserved. {new Date().getFullYear()}</p>
       </div>
     </div>

@@ -85,44 +85,44 @@ const Product = (props) => {
           <meta property="og:image" content={product.image} />
         </Head>
         <div>
-          <div className="mx-60">
-            <button className="my-4 p-2 bg-black text-white text-sm rounded" onClick={() => router.back()}>Back</button>
+          <div className="lg:mx-60">
+            <button className="lg:my-4 lg:p-2 lg:bg-black lg:text-white lg:text-sm lg:rounded" onClick={() => router.back()}>Back</button>
           </div>
-          <div className="mt-4 mx-60">
-            <div className="grid grid-cols-2 gap-1">
+          <div className="lg:mt-4 lg:mx-60">
+            <div className="lg:grid lg:grid-cols-2 lg:gap-1">
 
-              <div className="flex justify-center">
+              <div className="lg:flex lg:justify-center">
                 <ProductImage imageURL={image} />
               </div>
 
               <div>
-                <h1 className="font-black text-3xl uppercase">{product.name}</h1>
-                <p className="my-4 font-black text-3xl uppercase mb-2">{formatCurrencyString({
+                <h1 className="lg:font-black lg:text-3xl lg:uppercase">{product.name}</h1>
+                <p className="lg:my-4 lg:font-black lg:text-3xl lg:uppercase lg:mb-2">{formatCurrencyString({
                   value: product.price,
                   currency: product.currency,
                 })}</p>
-                <div className="my-4 font-medium" dangerouslySetInnerHTML={{ __html: product.shortDescription }}></div>
+                <div className="lg:my-4 lg:font-medium" dangerouslySetInnerHTML={{ __html: product.shortDescription }}></div>
                 {matrixItemDetail &&
-                  <p><span className="font-medium">SKU: {matrixItemDetail.customSku}</span></p>
+                  <p><span className="lg:font-medium">SKU: {matrixItemDetail.customSku}</span></p>
                 }
                 {matrixItemDetail && matrixItemDetail.ItemShops.ItemShop[0].qoh > 0 &&
-                  <p><span className="font-medium">STOCK:</span> <span className="text-green-500 font-medium uppercase">Available</span></p>
+                  <p><span className="lg:font-medium">STOCK:</span> <span className="lg:text-green-500 lg:font-medium lg:uppercase">Available</span></p>
                 }
                 {matrixItemDetail && matrixItemDetail.ItemShops.ItemShop[0].qoh == 0 &&
-                  <p><span className="font-medium">STOCK:</span> <span className="text-red-500 font-medium uppercase">Out of Stock</span></p>
+                  <p><span className="lg:font-medium">STOCK:</span> <span className="lg:text-red-500 lg:font-medium lg:uppercase">Out of Stock</span></p>
                 }
                 <MatrixFilter item={item} handleInputChange={handleInputChange} checkedInputs={checkedInputs} />
-                <div className="mt-8">
+                <div className="lg:mt-8">
                   <button
                     onClick={() => addItem(getSingleProductFromMatrix(checkedInputs))}
                     aria-label={`Add ${product.name} to your cart`}
-                    className="p-2 bg-fabred focus:bg-red-400 text-white font-bold rounded mr-2"
+                    className="lg:p-2 lg:bg-fabred lg:focus:bg-red-400 lg:text-white lg:font-bold lg:rounded lg:mr-2"
                   >
                     Add to Cart
                 </button>
                   {cartCount > 0 ? (
                     <Link href="/cart">
-                      <button className="p-2 bg-fabred text-white font-bold rounded">View Cart</button>
+                      <button className="lg:p-2 lg:bg-fabred lg:text-white lg:font-bold lg:rounded">View Cart</button>
                     </Link>
                   ) : ''}
                 </div>
@@ -130,10 +130,10 @@ const Product = (props) => {
             </div>
           </div>
 
-          <div className="mx-60 mb-24 mt-12 p-4 shadow-lg rounded max-w-full h-auto border-none">
-            <h3 className="mx-4 my-4 text-2xl font-black">{product.name} FULL DESCRIPTION</h3>
+          <div className="lg:mx-60 lg:mb-24 lg:mt-12 lg:p-4 lg:shadow-lg lg:rounded lg:max-w-full lg:h-auto lg:border-none">
+            <h3 className="lg:mx-4 lg:my-4 lg:text-2xl lg:font-black">{product.name} FULL DESCRIPTION</h3>
             <section>
-              <div className="mx-4 my-4 prose font-medium" dangerouslySetInnerHTML={{ __html: product.description }}></div>
+              <div className="lg:mx-4 lg:my-4 lg:prose lg:font-medium" dangerouslySetInnerHTML={{ __html: product.description }}></div>
             </section>
           </div>
         </div>
@@ -150,11 +150,11 @@ const Product = (props) => {
           <meta name="description" content={product.description} />
         </Head>
         <div>
-          <div className="mx-60">
-            <button className="mt-2 p-2 bg-black text-white text-sm rounded" onClick={() => router.back()}>Back</button>
+          <div className="lg:mx-60">
+            <button className="ml-2 mt-2 p-2 bg-black text-white text-sm rounded" onClick={() => router.back()}>Back</button>
           </div>
-          <div className="mt-4 mx-60">
-            <div className="grid grid-cols-2 gap-1">
+          <div className="mx-8 lg:mt-4 lg:mx-60">
+            <div className="lg:grid lg:grid-cols-2 lg:gap-1">
 
               <div className="flex justify-center">
                 <ProductImage imageURL={image} />
@@ -189,7 +189,7 @@ const Product = (props) => {
                     <button
                       onClick={() => addItem(product)}
                       aria-label={`Add ${product.name} to your cart`}
-                      className="p-2 bg-fabgrey text-gray-400 font-bold rounded mr-2"
+                      className="lg:p-2 lg:bg-fabgrey lg:text-gray-400 lg:font-bold lg:rounded lg:mr-2"
                       disabled
                     >
                       Add to Cart
@@ -197,7 +197,7 @@ const Product = (props) => {
                   }
                   {cartCount > 0 ? (
                     <Link href="/cart">
-                      <button className="p-2 bg-fabred text-white font-bold rounded">View Cart</button>
+                      <button className="lg:p-2 lg:bg-fabred lg:text-white lg:font-bold lg:rounded">View Cart</button>
                     </Link>
                   ) : ''}
                 </div>
@@ -205,10 +205,10 @@ const Product = (props) => {
             </div>
           </div>
 
-          <div className="mx-60 mb-24 mt-12 p-4 shadow-lg rounded max-w-full h-auto border-none">
-            <h3 className="mx-4 my-4 text-2xl font-black">{product.name} FULL DESCRIPTION</h3>
+          <div className="mx-8 mt-8 lg:mx-60 lg:mb-24 lg:mt-12 lg:p-4 lg:shadow-lg lg:rounded lg:max-w-full lg:h-auto lg:border-none">
+            <h3 className="lg:mx-4 lg:my-4 text-xl font-black">{product.name} FULL DESCRIPTION</h3>
             <section>
-              <div className="mx-4 my-4 prose font-medium" dangerouslySetInnerHTML={{ __html: product.description }}></div>
+              <div className="lg:mx-4 my-4 prose font-medium" dangerouslySetInnerHTML={{ __html: product.description }}></div>
             </section>
           </div>
         </div>

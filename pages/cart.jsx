@@ -85,16 +85,16 @@ const Cart = () => {
         <title>Cart - FAB Defense (UK)</title>
       </Head>
       <div className="lg:mx-60 lg:my-12">
-        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-          <div className="inline-block min-w-full shadow rounded overflow-hidden">
+        <div className="lg:-mx-4 sm:-mx-8 px-4 sm:px-8 lg:py-4 lg:overflow-x-auto">
+          <div className="lg:inline-block lg:min-w-full lg:shadow lg:rounded lg:overflow-hidden">
             <table className="lg:min-w-full lg:leading-normal">
               <thead className="lg:bg-black lg:text-white">
                 <tr>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-black text-left text-xs font-semibold text-white uppercase tracking-wider"></th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-black text-left text-xs font-semibold text-white uppercase tracking-wider"></th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-black text-left text-xs font-semibold text-white uppercase tracking-wider">Description</th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-black text-left text-xs font-semibold text-white uppercase tracking-wider">Qty</th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-black text-left text-xs font-semibold text-white uppercase tracking-wider">Price</th>
+                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider"></th>
+                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider"></th>
+                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Description</th>
+                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Qty</th>
+                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Price</th>
                 </tr>
               </thead>
               <tbody>

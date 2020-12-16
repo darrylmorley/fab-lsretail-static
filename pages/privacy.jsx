@@ -9,7 +9,7 @@ const Privacy = () => {
         <title>Privacy - FAB Defense (UK)</title>
         <meta name="description" content="At FAB Defense (UK) we take your privacy seriously. Please find our privacy policies below." />
       </Head>
-      <div className="mx-56 my-12">
+      <div className="mx-8 my-8 lg:mx-56 lg:my-12">
         <h1 id="privacy" className="mb-4 font-black text-4xl">Privacy Policy</h1>
 
         <h2 className="mt-8 mb-4 font-black text-2xl">Links</h2>

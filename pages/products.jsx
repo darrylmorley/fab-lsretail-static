@@ -50,17 +50,23 @@ const Products = (props) => {
         <meta property="og:description" content="FAB Defense Products | Bipods, Grips & More" />
         <meta property="og:image" content="/logos/FAB-logo.png" />
       </Head>
-      <div className="flex mx-60 mt-8">
+      <div className="lg:flex lg:mx-60 lg:mt-8">
         <FaArrowCircleUp
-          className="scrollTop text-4xl"
+          className="scrollTop lg:text-4xl text-3xl"
           onClick={scrollTop}
-          style={{ height: 40, display: showScroll ? 'flex' : 'none', position: 'fixed', bottom: '40px', right: '80px' }}
+          style={{
+            height: 40,
+            display: showScroll ? 'flex' : 'none',
+            position: 'fixed',
+            bottom: '30px',
+            right: '16px',
+          }}
         />
-        <div className="w-1/4">
+        <div className="hidden lg:block lg:w-1/4">
           <CategoryFilter category={Category} handleInputChange={handleInputChange} checkedCategories={checkedCategories} />
         </div>
-        <div className="w-3/4">
-          <div className="grid grid-cols-3 gap-4 my-12 flex justify-center">
+        <div className="lg:w-3/4 flex flex-col">
+          <div className="mx-auto my-8 w-80 lg:w-full lg:grid lg:grid-cols-3 lg:gap-4 lg:my-12 lg:flex lg:justify-center">
             {items.map(item => {
               if (Object.keys(checkedCategories).length < 1 || Object.keys(checkedCategories).every(value => checkedCategories[value] === false)) {
                 return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />

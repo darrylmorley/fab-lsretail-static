@@ -27,8 +27,8 @@ export default function Home() {
         This website uses cookies for functionality and user experience.{" "}
       </CookieConsent>
       <div id="app-modal" />
-      <main className="mx-60 mt-32 flex justify-center" id="modal">
-        <section className="grid grid-cols-3 gap-2">
+      <main className="hidden lg:mx-60 lg:mt-32 lg:flex lg:justify-center" id="modal">
+        <section className="lg:grid lg:grid-cols-3 lg:gap-2">
           <div><img src="products/FX-AG43B-Black.jpg" alt="FAB Defense AG43B" width="300" /></div>
           <div><img src="products/FX-REGB-White.jpg" alt="" width="300" /></div>
           <div><img src="products/FX-GLCOREB-DkGray.jpg" alt="" width="300" /></div>
@@ -37,7 +37,7 @@ export default function Home() {
           <div><img src="products/FX-USM-Red.jpg" alt="" width="300" /></div>
         </section>
       </main>
-      <div className="my-40">
+      <div className="lg:my-40">
         <BannerBottom />
       </div>
     </Layout>

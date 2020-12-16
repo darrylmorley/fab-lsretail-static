@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import CartIcon from './cart/CartIcon'
 import { useShoppingCart } from 'use-shopping-cart'
+import CartIcon from './cart/CartIcon'
 import CartDisplay from './cart/CartDisplay'
 
 const Nav = () => {
   const [cartDisplay, setCartDisplay] = useState(false)
+  const [menuToggle, setMenuToggle] = useState(false)
   const { cartCount } = useShoppingCart()
 
   const updateCartDisplay = () => {
@@ -13,41 +14,40 @@ const Nav = () => {
   }
 
   return (
-    <div className="text-white">
-      <div className="bg-fabgrey text-sm">
-        <div className="p-2 mx-48 flex">
-          <div className="w-1/2 flex justify-center">
+    <div className="lg:text-white">
+      <div className="lg:bg-fabgrey lg:text-sm">
+        <div className="lg:mx-48 lg:flex">
+          <div className="lg:w-1/2 lg:flex lg:justify-center">
             {/* <p>Shooting Supplies Ltd, All rights Reserved.</p> */}
           </div>
-          <div className="w-1/2 flex justify-end">
+          <div className="p-2 bg-fabgrey text-white text-xs text-right lg:text-sm lg:w-1/2 lg:flex lg:justify-end">
             <p>Contact Us: 01527 831 261</p>
           </div>
         </div>
       </div>
-      <div className="h-24 bg-black
-     text-white">
-        <div className="mx-48 h-24 flex justify-between items-center">
-          <div className="w-1/3">
+      <div className="lg:h-24 bg-black lg:text-white">
+        <div className="lg:mx-48 lg:h-24 lg:flex lg:justify-between lg:items-center">
+          <div className="p-4 flex justify-center lg:p-0 lg:block lg:w-1/3">
             <Link href="/">
-              <a><img src="/logos/FAB-logo.png" alt="FAB Defense Logo" width="120" className="py-6 mr-8" /></a>
+              <a><img src="/logos/FAB-logo.png" alt="FAB Defense Logo" width="120" className="lg:py-6 lg:mr-8" /></a>
             </Link>
           </div>
-          <div className="w-1/3 flex justify-center">
-            <ul className="flex text-white text-xl font-black space-x-16">
+          <div className="hidden lg:w-1/3 lg:flex lg:justify-center">
+            <ul className="lg:flex lg:text-white lg:text-xl lg:font-black lg:space-x-16">
               <Link href="/products">
                 <a>
-                  <li className="hover:text-fabred">PRODUCTS</li>
+                  <li className="lg:hover:text-fabred">PRODUCTS</li>
                 </a>
               </Link>
               <Link href="/blog">
-                <a><li className="hover:text-fabred">BLOG</li></a>
+                <a><li className="lg:hover:text-fabred">BLOG</li></a>
               </Link>
               <Link href="/contact">
-                <a><li className="hover:text-fabred">CONTACT</li></a>
+                <a><li className="lg:hover:text-fabred">CONTACT</li></a>
               </Link>
             </ul>
           </div>
-          <div className="w-1/3 flex justify-end">
+          <div className="hidden lg:w-1/3 lg:flex lg:justify-end">
             <div onMouseEnter={updateCartDisplay} onMouseLeave={updateCartDisplay} >
               <CartIcon />
               {cartCount > 0 && cartDisplay && <CartDisplay />}
@@ -55,6 +55,32 @@ const Nav = () => {
           </div>
         </div>
       </div>
+      <div className="p-1 lg:p-2 flex justify-center text-white bg-fabgrey text-xs lg:text-base">
+        <p>Free Delivery on Orders over £50</p>
+      </div>
+      <div className="p-2 bg-fabred text-white text-center lg:hidden">
+        <button onClick={() => setMenuToggle(!menuToggle)} className="font-bold uppercase">Menu</button>
+      </div>
+      {menuToggle &&
+        <div className="absolute z-10 bg-fabgrey w-full text-white">
+          <ul className="text-center uppercase font-bold">
+            <Link href="/products">
+              <a>
+                <li className="p-4 border-b-2 border-b-white">Products</li>
+              </a>
+            </Link>
+            <Link href="/blog">
+              <a>
+                <li className="p-4 border-b-2 border-b-white">Blog</li>
+              </a>
+            </Link>
+            <Link href="/contact">
+              <a>
+                <li className="p-4 border-b-2 border-b-white">Contact</li>
+              </a>
+            </Link>
+          </ul>
+        </div>}
     </div>
   )
 }
