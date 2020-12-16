@@ -17,6 +17,11 @@ async function getHeader() {
   return axiosConfig
 }
 
+export async function getDelivery() {
+  let axiosConfig = await getHeader()
+  return axios.get(`Item.json?itemID=7051&load_relations=["Category", "Images", "ItemShops", "ItemECommerce"]`, axiosConfig).catch(err => console.error(err.data))
+}
+
 export async function getItems() {
   let axiosConfig = await getHeader()
   return axios.get(`Item.json?manufacturerID=55&load_relations=["Category", "Images", "ItemShops", "CustomFieldValues"]`, axiosConfig).catch(err => console.error(err.data))
