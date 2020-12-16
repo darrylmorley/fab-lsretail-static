@@ -29,6 +29,14 @@ const Product = (props) => {
   const loaded = useRef(false);
 
   useEffect(() => {
+    if (Item) {
+      setItem(Item)
+    } else if (ItemMatrix) {
+      setItem(ItemMatrix)
+    }
+  })
+
+  useEffect(() => {
     async function getFabItem() {
       const res = await fetch(`/api/item?itemID=${checkedInputs}`)
       const { Item } = await res.json()

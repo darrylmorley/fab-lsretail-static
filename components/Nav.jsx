@@ -20,7 +20,7 @@ const Nav = () => {
           <div className="lg:w-1/2 lg:flex lg:justify-center">
             {/* <p>Shooting Supplies Ltd, All rights Reserved.</p> */}
           </div>
-          <div className="p-2 bg-fabgrey text-white text-xs text-right lg:text-sm lg:w-1/2 lg:flex lg:justify-end">
+          <div className="hidden lg:p-2 lg:text-sm lg:w-1/2 lg:flex lg:justify-end">
             <p>Contact Us: 01527 831 261</p>
           </div>
         </div>
@@ -55,7 +55,7 @@ const Nav = () => {
           </div>
         </div>
       </div>
-      <div className="p-1 lg:p-2 flex justify-center text-white bg-fabgrey text-xs lg:text-base">
+      <div className="p-2 lg:p-2 flex justify-center text-white bg-fabgrey text-xs lg:text-base">
         <p>Free Delivery on Orders over £50</p>
       </div>
       <div className="p-2 bg-fabred text-white text-center lg:hidden">
@@ -77,6 +77,11 @@ const Nav = () => {
             <Link href="/contact">
               <a>
                 <li className="p-4 border-b-2 border-b-white">Contact</li>
+              </a>
+            </Link>
+            <Link href="/cart">
+              <a>
+                <li className="p-4">Cart</li>
               </a>
             </Link>
           </ul>
