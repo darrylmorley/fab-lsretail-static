@@ -5,19 +5,56 @@ import CartItems from '../components/cart/CartItems'
 import { setCookie, destroyCookie } from 'nookies'
 import Layout from '../components/Layout'
 import Head from 'next/head'
+import { RewindDimensions } from '@styled-icons/boxicons-regular/Rewind'
 
 const Cart = () => {
   const [loading, setLoading] = useState(false)
   const [cartEmpty, setCartEmpty] = useState(true)
+  const [delivery, setDelivery] = useState(undefined)
+
   const {
+    addItem,
     cartCount,
     clearCart,
     cartDetails,
     redirectToCheckout,
+    totalPrice,
     formattedTotalPrice,
   } = useShoppingCart()
 
+  useEffect(() => {
+    const getDeliveryItem = async () => {
+      if (totalPrice && totalPrice < 5000 && delivery === undefined) {
+        const res = await fetch('/api/delivery')
+        const data = await res.json()
+        const item = data.Item
+
+        const delivery = {
+          name: item.description,
+          description: 'Delivery',
+          shortDescription: 'Delivery',
+          sku: item.customSku,
+          price: item.Prices.ItemPrice[0].amount.replace('.', ''),
+          currency: 'GBP',
+          image: `${item.Images.Image.baseImageURL}/w_200/${item.Images.Image.publicID}.jpg`,
+          itemID: item.itemID,
+          unitPrice: item.Prices.ItemPrice[0].amount,
+        }
+        setDelivery(delivery)
+      }
+    }
+    getDeliveryItem()
+  })
+
   useEffect(() => setCartEmpty(!cartCount), [cartCount])
+  useEffect(() => {
+    if (delivery && cartCount > 0) {
+      console.log('Delivery Charge Added!')
+      if (!cartDetails['DEL-FAB']) {
+        addItem(delivery)
+      }
+    }
+  }, [delivery])
 
   const clearCookie = () => {
     destroyCookie(null, 'cart')
