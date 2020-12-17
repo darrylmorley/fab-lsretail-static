@@ -25,6 +25,7 @@ const Cart = () => {
 
   useEffect(() => {
     const getDeliveryItem = async () => {
+      setLoading(true)
       if (totalPrice && totalPrice < 5000 && delivery === undefined) {
         const res = await fetch('/api/delivery')
         const data = await res.json()
@@ -42,6 +43,7 @@ const Cart = () => {
           unitPrice: item.Prices.ItemPrice[0].amount,
         }
         setDelivery(delivery)
+        setLoading(false)
       }
     }
     getDeliveryItem()
@@ -129,7 +131,7 @@ const Cart = () => {
         </div>
         <div className="lg:mt-4 lg:flex lg:justify-end">
           <button onClick={clearCookie} className="lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2 ">Clear Cart</button>
-          <button onClick={handleCheckout} className="lg:ml-4 lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2" disabled>Pay Now</button>
+          <button onClick={handleCheckout} className="lg:ml-4 lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2">Pay Now</button>
 
         </div>
       </div>
