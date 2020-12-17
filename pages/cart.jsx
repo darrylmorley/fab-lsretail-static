@@ -95,6 +95,14 @@ const Cart = () => {
     redirectToCheckout({ sessionId: response.id })
   }
 
+  if (cartCount === 0) {
+    return (
+      <Layout>
+        <div className="flex justify-center my-12 text-2xl uppercase">The Cart is Empty</div>
+      </Layout>
+    )
+  }
+
   return (
     <Layout>
       <Head>
@@ -108,9 +116,9 @@ const Cart = () => {
                 <tr>
                   <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider"></th>
                   <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider"></th>
-                  <th className="hidden lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Description</th>
-                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Qty</th>
-                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Price</th>
+                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left text-sm lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Description</th>
+                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left text-sm lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Qty</th>
+                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left text-sm lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Price</th>
                 </tr>
               </thead>
               <tbody>

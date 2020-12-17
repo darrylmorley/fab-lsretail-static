@@ -11,7 +11,7 @@ const CartForm = (props) => {
       {Object.keys(cartDetails).map(item => {
         return (
           <tr key={cartDetails[item].sku}>
-            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td className="p-1 lg:p-5 border-b border-gray-200 bg-white text-sm">
               {cartDetails[item].itemID != 7051 &&
                 <button
                   onClick={() => removeItem(cartDetails[item].sku)}
@@ -30,16 +30,21 @@ const CartForm = (props) => {
               height={80}
               alt={`Image of ${cartDetails[item].name}`}
             /></td>
-            <td className="hidden lg:px-5 lg:py-5 lg:border-b lg:border-gray-200 lg:bg-white lg:text-sm">{cartDetails[item].name}</td>
-            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-              <input
-                type="number"
-                name="qty"
-                id="qty"
-                value={cartDetails[item].quantity}
-                onChange={(event) => { setItemQuantity(cartDetails[item].sku, event.target.value) }}
-                className="w-12"
-              />
+            <td className="text-xs p-2 lg:p-5 lg:border-b lg:border-gray-200 lg:bg-white lg:text-sm">{cartDetails[item].name}</td>
+            <td className="p-2 lg:p-5 border-b border-gray-200 bg-white text-sm">
+              {cartDetails[item].itemID != 7051 &&
+                <input
+                  type="number"
+                  name="qty"
+                  id="qty"
+                  value={cartDetails[item].quantity}
+                  onChange={(event) => { setItemQuantity(cartDetails[item].sku, event.target.value) }}
+                  className="w-8 lg:w-12 border-2 border-black rounded"
+                />
+              }
+              {cartDetails && cartDetails[item].itemID === 7051 &&
+                <div>Delivery</div>
+              }
             </td>
             <td className="w-24 px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].formattedValue}</td>
           </tr>
