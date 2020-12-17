@@ -12,25 +12,30 @@ const ResultPage = (props) => {
   const { saleID } = props.props
   const { clearCart } = useShoppingCart()
 
+  console.log(data.payment_status)
+
   if (!props) return <div>failed to load</div>
 
   destroyCookie(null, 'cart')
   clearCart()
 
-  return (
-    <Layout title="Checkout Payment Result | Next.js + TypeScript Example">
-      <Head>
-        <title>Checkout Result - FAB Defense (UK)</title>
-      </Head>
-      <div className="page-container">
-        <h1>Checkout Payment Result</h1>
-        <h2>Sale Reference: {saleID}</h2>
-        <h2>Status: {data?.payment_intent?.status ?? 'loading...'}</h2>
-        <h3>CheckoutSession response:</h3>
-        <PrintObject content={data ?? 'loading...'} />
-      </div>
-    </Layout>
-  )
+  if (data.payment_status === 'paid') {
+    return (
+      <Layout>
+        <Head>
+          <title>Checkout Result - FAB Defense (UK)</title>
+        </Head>
+        <div className="lg:mx-96 lg:my-12">
+          <h1 className="text-4xl font-bold">Thankyou for your order!</h1>
+          <h2 className="lg:text-2xl lg:mt-4 font-semibold">Your order reference is:  {saleID}</h2>
+          <p className="lg:text-xl lg:mt-4">Please allow up to 3 working days for delivery of your item.</p>
+          {/* <h2>Status: {data?.payment_intent?.status ?? 'loading...'}</h2> */}
+          {/* <h3>CheckoutSession response:</h3> */}
+          {/* <PrintObject content={data ?? 'loading...'} /> */}
+        </div>
+      </Layout>
+    )
+  }
 }
 
 ResultPage.getInitialProps = async ({ query, req }) => {
@@ -54,7 +59,7 @@ ResultPage.getInitialProps = async ({ query, req }) => {
           "SaleLine": [
             {
               "shopID": 1,
-              "employeeID": 5,
+              "employeeID": 9,
               "customSku": cartDetails[item].sku,
               "unitQuantity": cartDetails[item].quantity,
               "unitPrice": cartDetails[item].unitPrice,

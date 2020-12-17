@@ -1,4 +1,4 @@
-import { getItems } from './lightspeed'
+import { getDelivery, getItems } from './lightspeed'
 
 export async function fetchGetJSON(url) {
   try {
@@ -35,7 +35,13 @@ export async function fetchPostJSON(url, data) {
 export async function getInventory() {
   const res = await getItems()
   const data = await res.data
+
   const items = data.Item
+  console.log({ items })
+
+  const resDel = await getDelivery()
+  const dataDel = await resDel.data
+  items.push(dataDel.Item)
 
   const products = items.map(item => {
     return (

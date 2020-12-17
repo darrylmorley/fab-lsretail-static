@@ -15,6 +15,7 @@ export default async function handler(req, res) {
       // Validate the cart details that were sent from the client.
       const cartItems = req.body
       const line_items = validateCartItems(inventory, cartItems)
+
       // Create Checkout Sessions from body params.
       const params = {
         submit_type: 'pay',
