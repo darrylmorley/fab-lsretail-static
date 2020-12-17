@@ -14,6 +14,7 @@ const Cart = () => {
 
   const {
     addItem,
+    removeItem,
     cartCount,
     clearCart,
     cartDetails,
@@ -55,6 +56,13 @@ const Cart = () => {
       }
     }
   }, [delivery])
+
+  useEffect(() => {
+    if (totalPrice >= 5000) {
+      setDelivery(undefined)
+      removeItem('DEL-FAB')
+    }
+  }, [totalPrice])
 
   const clearCookie = () => {
     destroyCookie(null, 'cart')

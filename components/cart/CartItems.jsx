@@ -6,18 +6,25 @@ const CartForm = (props) => {
   const { cartDetails } = props
   const { removeItem, setItemQuantity } = useShoppingCart()
 
+  console.log({ cartDetails })
+
   return (
     <>
       {Object.keys(cartDetails).map(item => {
         return (
           <tr key={cartDetails[item].sku}>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-              <button
-                onClick={() => removeItem(cartDetails[item].sku)}
-                aria-label={`Remove ${cartDetails[item].name} from your cart`}
-              >
-                <TiDelete size="1.5em" />
-              </button>
+              {cartDetails[item].itemID != 7051 &&
+                <button
+                  onClick={() => removeItem(cartDetails[item].sku)}
+                  aria-label={`Remove ${cartDetails[item].name} from your cart`}
+                >
+                  <TiDelete size="1.5em" />
+                </button>
+              }
+              {cartDetails && cartDetails[item].itemID === 7051 &&
+                <div></div>
+              }
             </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"><Image
               src={cartDetails[item].image}
