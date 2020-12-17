@@ -100,15 +100,15 @@ const Cart = () => {
       <Head>
         <title>Cart - FAB Defense (UK)</title>
       </Head>
-      <div className="lg:mx-60 lg:my-12">
-        <div className="lg:-mx-4 sm:-mx-8 px-4 sm:px-8 lg:py-4 lg:overflow-x-auto">
+      <div className="mx-8 my-8 lg:mx-60 lg:my-12">
+        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 lg:overflow-x-auto">
           <div className="lg:inline-block lg:min-w-full lg:shadow lg:rounded lg:overflow-hidden">
-            <table className="lg:min-w-full lg:leading-normal">
-              <thead className="lg:bg-black lg:text-white">
+            <table className="min-w-full leading-normal">
+              <thead className="bg-black text-white">
                 <tr>
                   <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider"></th>
                   <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider"></th>
-                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Description</th>
+                  <th className="hidden lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Description</th>
                   <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Qty</th>
                   <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Price</th>
                 </tr>
@@ -119,19 +119,19 @@ const Cart = () => {
             </table>
           </div>
         </div>
-        <div className="lg:flex lg:justify-end">
-          <div className="lg:w-48 lg:flex lg:flex-col lg:border-2 lg:border-gray-200 lg:text-center">
-            <div className="lg:p-2 lg:bg-black lg:text-white lg:rounded-t">
+        <div className="flex justify-end">
+          <div className="w-24 lg:w-48 flex flex-col border-2 border-gray-200 text-center">
+            <div className="p-1 lg:p-2 bg-black text-white text-sm lg:text-base rounded-t">
               <h3>Cart Total</h3>
             </div>
-            <div className="lg:p-2 lg:text-center">
+            <div className="p-2 text-center text-sm lg:text-base">
               <p>{formattedTotalPrice}</p>
             </div>
           </div>
         </div>
-        <div className="lg:mt-4 lg:flex lg:justify-end">
-          <button onClick={clearCookie} className="lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2 ">Clear Cart</button>
-          <button onClick={handleCheckout} className="lg:ml-4 lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2" disabled>Pay Now</button>
+        <div className="mt-4 flex justify-end">
+          <button onClick={clearCookie} className="mt-4 bg-black text-white text-sm lg:text-base rounded p-2">Clear Cart</button>
+          <button onClick={handleCheckout} className="ml-4 mt-4 bg-black text-white text-sm lg:text-base rounded p-2" disabled>Pay Now</button>
 
         </div>
       </div>

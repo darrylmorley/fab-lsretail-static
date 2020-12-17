@@ -30,7 +30,7 @@ const CartForm = (props) => {
               height={80}
               alt={`Image of ${cartDetails[item].name}`}
             /></td>
-            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{cartDetails[item].name}</td>
+            <td className="hidden lg:px-5 lg:py-5 lg:border-b lg:border-gray-200 lg:bg-white lg:text-sm">{cartDetails[item].name}</td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
               <input
                 type="number"

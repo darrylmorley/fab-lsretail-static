@@ -14,6 +14,7 @@ const Products = (props) => {
 
   const [checkedCategories, setCheckedCategories] = useState({})
   const [showScroll, setShowScroll] = useState()
+  const [showFilter, setShowFilter] = useState(false)
 
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 200) {
@@ -60,6 +61,14 @@ const Products = (props) => {
             right: '16px',
           }}
         />
+        <div className="mt-6 uppercase text-sm font-bold lg:hidden" onClick={() => setShowFilter(!showFilter)}>
+          <span className="p-3 text-white bg-fabgrey rounded-r-lg">Filter</span>
+          {showFilter &&
+            <div className="absolute z-10">
+              <CategoryFilter category={Category} handleInputChange={handleInputChange} checkedCategories={checkedCategories} />
+            </div>
+          }
+        </div>
         <div className="hidden lg:block lg:w-1/4">
           <CategoryFilter category={Category} handleInputChange={handleInputChange} checkedCategories={checkedCategories} />
         </div>

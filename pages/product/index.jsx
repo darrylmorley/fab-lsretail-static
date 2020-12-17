@@ -90,18 +90,18 @@ const Product = (props) => {
         </Head>
         <div>
           <div className="lg:mx-60">
-            <button className="lg:my-4 lg:p-2 lg:bg-black lg:text-white lg:text-sm lg:rounded" onClick={() => router.back()}>Back</button>
+            <button className="ml-2 mt-2 p-2 bg-black text-white text-sm rounded" onClick={() => router.back()}>Back</button>
           </div>
-          <div className="lg:mt-4 lg:mx-60">
+          <div className="mx-8 lg:mt-4 lg:mx-60">
             <div className="lg:grid lg:grid-cols-2 lg:gap-1">
 
-              <div className="lg:flex lg:justify-center">
+              <div className="flex justify-center">
                 <ProductImage imageURL={image} />
               </div>
 
               <div>
-                <h1 className="lg:font-black lg:text-3xl lg:uppercase">{product.name}</h1>
-                <p className="lg:my-4 lg:font-black lg:text-3xl lg:uppercase lg:mb-2">{formatCurrencyString({
+                <h1 className="font-black text-3xl uppercase">{product.name}</h1>
+                <p className="my-4 font-black text-3xl uppercase mb-2">{formatCurrencyString({
                   value: product.price,
                   currency: product.currency,
                 })}</p>
@@ -120,24 +120,24 @@ const Product = (props) => {
                   <button
                     onClick={() => addItem(getSingleProductFromMatrix(checkedInputs))}
                     aria-label={`Add ${product.name} to your cart`}
-                    className="lg:p-2 lg:bg-fabred lg:focus:bg-red-400 lg:text-white lg:font-bold lg:rounded lg:mr-2"
+                    className="p-2 bg-fabred focus:bg-red-400 text-white font-bold rounded mr-2"
                   >
                     Add to Cart
                 </button>
                   {cartCount > 0 ? (
                     <Link href="/cart">
-                      <button className="lg:p-2 lg:bg-fabred lg:text-white lg:font-bold lg:rounded">View Cart</button>
+                      <button className="p-2 bg-fabred text-white font-bold rounded">View Cart</button>
                     </Link>
                   ) : ''}
                 </div>
               </div>
             </div>
           </div>
-
-          <div className="lg:mx-60 lg:mb-24 lg:mt-12 lg:p-4 lg:shadow-lg lg:rounded lg:max-w-full lg:h-auto lg:border-none">
-            <h3 className="lg:mx-4 lg:my-4 lg:text-2xl lg:font-black">{product.name} FULL DESCRIPTION</h3>
+          <hr className="mt-12 lg:hidden" />
+          <div className="mx-8 my-12 lg:mx-60 lg:mb-24 lg:mt-12 lg:p-4 lg:shadow-lg lg:rounded lg:max-w-full lg:h-auto lg:border-none">
+            <h3 className="lg:mx-4 my-4 text-2xl font-black">{product.name} FULL DESCRIPTION</h3>
             <section>
-              <div className="lg:mx-4 lg:my-4 lg:prose lg:font-medium" dangerouslySetInnerHTML={{ __html: product.description }}></div>
+              <div className="lg:mx-4 my-4 prose lg:font-medium" dangerouslySetInnerHTML={{ __html: product.description }}></div>
             </section>
           </div>
         </div>
@@ -201,7 +201,7 @@ const Product = (props) => {
                   }
                   {cartCount > 0 ? (
                     <Link href="/cart">
-                      <button className="lg:p-2 lg:bg-fabred lg:text-white lg:font-bold lg:rounded">View Cart</button>
+                      <button className="p-2 bg-fabred text-white font-bold rounded">View Cart</button>
                     </Link>
                   ) : ''}
                 </div>
