@@ -70,7 +70,7 @@ ResultPage.getInitialProps = async ({ query, req }) => {
       })
 
       const sale = {
-        "employeeID": 5,
+        "employeeID": 9,
         "registerID": 1,
         "completed": true,
         "shopID": 1,
