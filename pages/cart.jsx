@@ -131,7 +131,7 @@ const Cart = () => {
         </div>
         <div className="lg:mt-4 lg:flex lg:justify-end">
           <button onClick={clearCookie} className="lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2 ">Clear Cart</button>
-          <button onClick={handleCheckout} className="lg:ml-4 lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2">Pay Now</button>
+          <button onClick={handleCheckout} className="lg:ml-4 lg:mt-4 lg:bg-black lg:text-white lg:rounded lg:p-2" disabled>Pay Now</button>
 
         </div>
       </div>
