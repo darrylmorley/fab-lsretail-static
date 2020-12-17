@@ -50,10 +50,6 @@ const Product = (props) => {
     }
   }, [checkedInputs])
 
-  useEffect(() => {
-    console.log(matrixItemDetail)
-  }, [matrixItemDetail])
-
   const product = {
     name: item.description,
     description: item.ItemECommerce ? item.ItemECommerce.longDescription : '',

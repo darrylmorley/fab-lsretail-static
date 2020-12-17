@@ -1,9 +1,9 @@
-import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
+import { useShoppingCart } from 'use-shopping-cart'
 import { FiShoppingBag } from "react-icons/fi";
 import Link from 'next/link'
 
 const CartIcon = () => {
-  const { cartCount, totalPrice } = useShoppingCart()
+  const { cartCount } = useShoppingCart()
 
   return (
     <div className="text-white text-2xl hover:text-fabred">

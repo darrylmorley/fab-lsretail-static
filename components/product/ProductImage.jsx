@@ -1,8 +1,6 @@
 import Image from 'next/image'
 
 const ProductImage = (props) => {
-  console.log(props)
-
   return (
     <Image
       src={props.imageURL}

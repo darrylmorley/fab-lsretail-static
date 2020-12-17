@@ -6,8 +6,6 @@ const CartForm = (props) => {
   const { cartDetails } = props
   const { removeItem, setItemQuantity } = useShoppingCart()
 
-  console.log({ cartDetails })
-
   return (
     <>
       {Object.keys(cartDetails).map(item => {

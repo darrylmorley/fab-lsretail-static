@@ -27,8 +27,6 @@ const Products = (props) => {
     window.addEventListener('scroll', checkScrollTop)
   }, [showScroll])
 
-
-
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

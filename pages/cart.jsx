@@ -50,7 +50,6 @@ const Cart = () => {
   useEffect(() => setCartEmpty(!cartCount), [cartCount])
   useEffect(() => {
     if (delivery && cartCount > 0) {
-      console.log('Delivery Charge Added!')
       if (!cartDetails['DEL-FAB']) {
         addItem(delivery)
       }
@@ -63,6 +62,13 @@ const Cart = () => {
       removeItem('DEL-FAB')
     }
   }, [totalPrice])
+
+  useEffect(() => {
+    if (Object.keys(cartDetails).length === 1 && cartDetails['DEL-FAB']) {
+      setDelivery(undefined)
+      removeItem('DEL-FAB')
+    }
+  }, [cartDetails])
 
   const clearCookie = () => {
     destroyCookie(null, 'cart')
