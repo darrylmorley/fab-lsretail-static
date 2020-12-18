@@ -34,18 +34,12 @@ const Products = (props) => {
   };
 
   const handleInputChange = (event) => {
-    console.log('Select Changed')
     setCheckedCategories({ ...checkedCategories, [event.target.value]: event.target.checked })
   }
 
   const handleMobileInputChange = (event) => {
-    console.log('Select Changed')
     setCheckedCategories({ [event.target.value]: true })
   }
-
-  useEffect(() => {
-    console.log('Checked Categories', checkedCategories)
-  }, [checkedCategories])
 
   return (
     <Layout>
@@ -78,7 +72,10 @@ const Products = (props) => {
           <div className="mx-auto my-8 w-80 lg:w-full lg:grid lg:grid-cols-3 lg:gap-4 lg:my-12 lg:flex lg:justify-center">
             {items.map(item => {
               if (Object.keys(checkedCategories).length < 1 || Object.keys(checkedCategories).every(value => checkedCategories[value] === false)) {
-                return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />
+                if (item.ItemECommerce.listOnStore == 'true') {
+                  console.log(item)
+                  return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />
+                }
               }
               for (const [key, value] of Object.entries(checkedCategories)) {
                 if (value === true) {
