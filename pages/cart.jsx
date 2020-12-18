@@ -43,11 +43,15 @@ const Cart = () => {
           unitPrice: item.Prices.ItemPrice[0].amount,
         }
         setDelivery(delivery)
-        setLoading(false)
       }
+      setLoading(false)
     }
     getDeliveryItem()
   })
+
+  useEffect(() => {
+    console.log(loading)
+  }, [loading])
 
   useEffect(() => setCartEmpty(!cartCount), [cartCount])
   useEffect(() => {
@@ -139,7 +143,9 @@ const Cart = () => {
         </div>
         <div className="mt-4 flex justify-end">
           <button onClick={clearCookie} className="mt-4 bg-black text-white text-sm lg:text-base rounded p-2">Clear Cart</button>
-          <button onClick={handleCheckout} className="ml-4 mt-4 bg-black text-white text-sm lg:text-base rounded p-2">Pay Now</button>
+          {!loading &&
+            <button onClick={handleCheckout} className="ml-4 mt-4 bg-black text-white text-sm lg:text-base rounded p-2">Pay Now</button>
+          }
 
         </div>
       </div>
