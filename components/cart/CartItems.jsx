@@ -37,6 +37,8 @@ const CartForm = (props) => {
                   type="number"
                   name="qty"
                   id="qty"
+                  min="1"
+                  max="2"
                   value={cartDetails[item].quantity}
                   onChange={(event) => { setItemQuantity(cartDetails[item].sku, event.target.value) }}
                   className="w-8 lg:w-12 border-2 border-black rounded"
