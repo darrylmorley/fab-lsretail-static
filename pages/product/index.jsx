@@ -119,7 +119,7 @@ const Product = (props) => {
                 <div className="lg:mt-8">
                   {matrixItemDetail && matrixItemDetail.ItemShops.ItemShop[0].qoh > 0 &&
                     <button
-                      onClick={() => addItem(product)}
+                      onClick={() => addItem(getSingleProductFromMatrix(checkedInputs))}
                       aria-label={`Add ${product.name} to your cart`}
                       className="p-2 bg-fabred focus:bg-red-400 text-white font-bold rounded mr-2"
                     >
@@ -128,7 +128,7 @@ const Product = (props) => {
                   }
                   {matrixItemDetail && matrixItemDetail.ItemShops.ItemShop[0].qoh == 0 &&
                     <button
-                      onClick={() => addItem(product)}
+                      onClick={() => addItem(getSingleProductFromMatrix(checkedInputs))}
                       aria-label={`Add ${product.name} to your cart`}
                       className="lg:p-2 lg:bg-fabgrey lg:text-gray-400 lg:font-bold lg:rounded lg:mr-2"
                       disabled
