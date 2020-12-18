@@ -98,7 +98,7 @@ const Cart = () => {
   if (cartCount === 0) {
     return (
       <Layout>
-        <div className="flex justify-center my-12 text-2xl uppercase">The Cart is Empty</div>
+        <div className="flex justify-center my-12 text-xl uppercase">The Cart is Empty</div>
       </Layout>
     )
   }
@@ -139,7 +139,7 @@ const Cart = () => {
         </div>
         <div className="mt-4 flex justify-end">
           <button onClick={clearCookie} className="mt-4 bg-black text-white text-sm lg:text-base rounded p-2">Clear Cart</button>
-          <button onClick={handleCheckout} className="ml-4 mt-4 bg-black text-white text-sm lg:text-base rounded p-2" disabled>Pay Now</button>
+          <button onClick={handleCheckout} className="ml-4 mt-4 bg-black text-white text-sm lg:text-base rounded p-2">Pay Now</button>
 
         </div>
       </div>
