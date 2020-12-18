@@ -83,7 +83,6 @@ const Cart = () => {
 
   const handleCheckout = async (event) => {
     event.preventDefault()
-    setLoading(true)
     setCookie(null, 'cart', JSON.stringify({ cartDetails, formattedTotalPrice }), { path: '/' })
 
     const response = await fetchPostJSON(
@@ -95,7 +94,6 @@ const Cart = () => {
       console.error(response.message)
       return
     }
-
     redirectToCheckout({ sessionId: response.id })
   }
 
@@ -144,7 +142,7 @@ const Cart = () => {
         <div className="mt-4 flex justify-end">
           <button onClick={clearCookie} className="mt-4 bg-black text-white text-sm lg:text-base rounded p-2">Clear Cart</button>
           {!loading &&
-            <button onClick={handleCheckout} className="ml-4 mt-4 bg-black text-white text-sm lg:text-base rounded p-2">Pay Now</button>
+            <button onClick={handleCheckout} className="ml-4 mt-4 bg-fabred focus:bg-fabgrey text-white text-sm lg:text-base rounded p-2">Pay Now</button>
           }
 
         </div>

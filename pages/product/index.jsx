@@ -85,6 +85,14 @@ const Product = (props) => {
     }
   }
 
+  if (!item) {
+    return (
+      <div className="mt-24 flex justify-center">
+        Something went wrong, please go back and try again.
+      </div>
+    )
+  }
+
   // Return Matrix Item
   if (item.itemMatrixID != 0) {
     return (
