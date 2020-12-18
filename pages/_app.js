@@ -6,21 +6,6 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import '../style/nprogress.css';
 require("typeface-montserrat");
-import * as Sentry from "@sentry/react";
-import { Integrations } from "@sentry/tracing";
-
-//Add Sentry
-Sentry.init({
-  dsn: "https://5bcd30f23b9247e2b55fd226f4a1f110@o493648.ingest.sentry.io/5563432",
-  autoSessionTracking: true,
-  integrations: [
-    new Integrations.BrowserTracing(),
-  ],
-
-  // We recommend adjusting this value in production, or using tracesSampler
-  // for finer control
-  tracesSampleRate: 1.0,
-});
 
 // Router events.
 Router.events.on('routeChangeStart', () => NProgress.start());

@@ -9,8 +9,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@sentry/react": "^5.29.2",
-    "@sentry/tracing": "^5.29.2",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.11.0",
     "@styled-icons/boxicons-regular": "^10.15.1",
