@@ -95,13 +95,13 @@ const Cart = () => {
     redirectToCheckout({ sessionId: response.id })
   }
 
-  if (cartCount === 0) {
-    return (
-      <Layout>
-        <div className="flex justify-center my-12 text-xl uppercase">The Cart is Empty</div>
-      </Layout>
-    )
-  }
+  // if (cartCount === 0) {
+  //   return (
+  //     <Layout>
+  //       <div className="flex justify-center my-12 text-xl uppercase">The Cart is Empty</div>
+  //     </Layout>
+  //   )
+  // }
 
   return (
     <Layout>
@@ -114,11 +114,11 @@ const Cart = () => {
             <table className="min-w-full leading-normal">
               <thead className="bg-black text-white">
                 <tr>
+                  <th className="p-2 lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider"></th>
                   <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider"></th>
-                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left lg:text-xs lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider"></th>
-                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left text-sm lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Description</th>
-                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left text-sm lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Qty</th>
-                  <th className="lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left text-sm lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Price</th>
+                  <th className="p-2 text-left lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left text-sm lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Description</th>
+                  <th className="p-2 text-left lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left text-sm lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Qty</th>
+                  <th className="p-2 text-left lg:px-5 lg:py-3 lg:border-b-2 lg:border-gray-200 lg:bg-black lg:text-left text-sm lg:font-semibold lg:text-white lg:uppercase lg:tracking-wider">Price</th>
                 </tr>
               </thead>
               <tbody>
