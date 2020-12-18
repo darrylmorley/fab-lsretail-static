@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { getItem, getMatrixItem } from '../api/lightspeed'
 import { useState, useEffect, useRef } from 'react'
@@ -21,6 +22,7 @@ const Product = (props) => {
       : `${ItemMatrix.Images.Image.baseImageURL}/w_300/${ItemMatrix.Images.Image.publicID}.jpg`)
   const [item, setItem] = useState(Item ? Item : ItemMatrix)
   const [matrixItemDetail, setMatrixItemDetail] = useState()
+  const [matrixLoading, setMatrixLoading] = useState(false)
 
   const handleInputChange = (event) => {
     setCheckedInputs([event.target.value])
@@ -38,10 +40,12 @@ const Product = (props) => {
 
   useEffect(() => {
     async function getFabItem() {
+      setMatrixLoading(true)
       const res = await fetch(`/api/item?itemID=${checkedInputs}`)
       const { Item } = await res.json()
       setImage(Item.Images ? `${Item.Images.Image.baseImageURL}/w_300/${Item.Images.Image.publicID}.jpg` : 'No Image Yet')
       setMatrixItemDetail(Item)
+      setMatrixLoading(false)
     }
     if (loaded.current) {
       getFabItem()
@@ -49,6 +53,10 @@ const Product = (props) => {
       loaded.current = true;
     }
   }, [checkedInputs])
+
+  useEffect(() => {
+    console.log(matrixLoading)
+  }, [matrixLoading])
 
   const product = {
     name: item.description,
@@ -96,7 +104,12 @@ const Product = (props) => {
             <div className="lg:grid lg:grid-cols-2 lg:gap-1">
 
               <div className="flex justify-center">
-                <ProductImage imageURL={image} />
+                {matrixLoading &&
+                  <img src="/loading.gif" alt="Loading spinner" />
+                }
+                {!matrixLoading &&
+                  <ProductImage imageURL={image} />
+                }
               </div>
 
               <div>
