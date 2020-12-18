@@ -80,7 +80,9 @@ const Products = (props) => {
               for (const [key, value] of Object.entries(checkedCategories)) {
                 if (value === true) {
                   if (item.categoryID === key) {
-                    return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />
+                    if (item.ItemECommerce.listOnStore == 'true') {
+                      return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />
+                    }
                   }
                 }
               }
