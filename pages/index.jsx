@@ -1,7 +1,7 @@
 import CookieConsent from "react-cookie-consent";
 import Layout from '../components/Layout'
 import BannerBottom from '../components/BannerBottom'
-import HomeModal from '../components/Modal'
+// import HomeModal from '../components/Modal'
 import Head from 'next/head'
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
         <meta property="og:image" content="/logos/FAB-logo.png" />
       </Head>
       {/* <Banner /> */}
-      <HomeModal />
+      {/* <HomeModal /> */}
       <CookieConsent
         location="bottom"
         buttonText="Okay"
@@ -26,7 +26,7 @@ export default function Home() {
       >
         This website uses cookies for functionality and user experience.{" "}
       </CookieConsent>
-      <div id="app-modal" />
+      {/* <div id="app-modal" /> */}
       <main className="hidden lg:mx-60 lg:mt-32 lg:flex lg:justify-center" id="modal">
         <section className="lg:grid lg:grid-cols-3 lg:gap-2">
           <div><img src="products/FX-AG43B-Black.jpg" alt="FAB Defense AG43B" width="300" /></div>
