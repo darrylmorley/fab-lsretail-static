@@ -50,7 +50,7 @@ const Cart = () => {
   })
 
   useEffect(() => {
-    console.log(loading)
+    // console.log(loading)
   }, [loading])
 
   useEffect(() => setCartEmpty(!cartCount), [cartCount])

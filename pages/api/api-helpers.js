@@ -37,7 +37,6 @@ export async function getInventory() {
   const data = await res.data
 
   const items = data.Item
-  console.log({ items })
 
   const resDel = await getDelivery()
   const dataDel = await resDel.data

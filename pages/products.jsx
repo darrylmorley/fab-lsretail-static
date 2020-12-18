@@ -73,7 +73,6 @@ const Products = (props) => {
             {items.map(item => {
               if (Object.keys(checkedCategories).length < 1 || Object.keys(checkedCategories).every(value => checkedCategories[value] === false)) {
                 if (item.ItemECommerce.listOnStore == 'true') {
-                  console.log(item)
                   return <ProductCard item={item} key={item.itemID ? item.itemID : item.itemMatrixID} />
                 }
               }

@@ -12,8 +12,6 @@ const ResultPage = (props) => {
   const { saleID } = props.props
   const { clearCart } = useShoppingCart()
 
-  console.log(data.payment_status)
-
   if (!props) return <div>failed to load</div>
 
   destroyCookie(null, 'cart')
