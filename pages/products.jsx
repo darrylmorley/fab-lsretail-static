@@ -5,6 +5,7 @@ import { FaArrowCircleUp } from 'react-icons/fa';
 import Layout from '../components/Layout'
 import ProductCard from '../components/ProductCard'
 import CategoryFilter from '../components/CategoryFilter'
+import MobileCategoryFilter from '../components/MobileCategoryFilter'
 
 const Products = (props) => {
   const { singleItems } = props
@@ -33,11 +34,17 @@ const Products = (props) => {
   };
 
   const handleInputChange = (event) => {
+    console.log('Select Changed')
     setCheckedCategories({ ...checkedCategories, [event.target.value]: event.target.checked })
   }
 
+  const handleMobileInputChange = (event) => {
+    console.log('Select Changed')
+    setCheckedCategories({ [event.target.value]: true })
+  }
+
   useEffect(() => {
-    // console.log('Checked Categories', checkedCategories)
+    console.log('Checked Categories', checkedCategories)
   }, [checkedCategories])
 
   return (
@@ -61,13 +68,8 @@ const Products = (props) => {
             right: '16px',
           }}
         />
-        <div className="mt-6 uppercase text-sm font-bold lg:hidden" onClick={() => setShowFilter(!showFilter)}>
-          <span className="p-3 text-white bg-fabgrey rounded-r-lg">Filter</span>
-          {showFilter &&
-            <div className="absolute z-10">
-              <CategoryFilter category={Category} handleInputChange={handleInputChange} checkedCategories={checkedCategories} />
-            </div>
-          }
+        <div className="lg:hidden">
+          <MobileCategoryFilter category={Category} handleMobileInputChange={handleMobileInputChange} checkedCategories={checkedCategories} />
         </div>
         <div className="hidden lg:block lg:w-1/4">
           <CategoryFilter category={Category} handleInputChange={handleInputChange} checkedCategories={checkedCategories} />
