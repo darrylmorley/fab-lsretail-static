@@ -105,7 +105,7 @@ ResultPage.getInitialProps = async ({ query, req }) => {
       const res = fetch('https://api.sendinblue.com/v3/smtp/email', {
         method: 'POST',
         headers: {
-          'api-key': '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',
+          'api-key': process.env.EMAIL_API,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
