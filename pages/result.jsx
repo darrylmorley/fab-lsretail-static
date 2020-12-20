@@ -28,8 +28,8 @@ const ResultPage = (props) => {
           <h2 className="lg:text-2xl lg:mt-4 font-semibold">Your order reference is:  {saleID}</h2>
           <p className="lg:text-xl lg:mt-4">Please allow up to 3 working days for delivery of your item.</p>
           {/* <h2>Status: {data?.payment_intent?.status ?? 'loading...'}</h2> */}
-          {/* <h3>CheckoutSession response:</h3> */}
-          {/* <PrintObject content={data ?? 'loading...'} /> */}
+          {/* <h3>CheckoutSession response:</h3>
+          <PrintObject content={data ?? 'loading...'} /> */}
         </div>
       </Layout>
     )
@@ -91,6 +91,55 @@ ResultPage.getInitialProps = async ({ query, req }) => {
   }
 
 
+
+  const sendEmailConfirmation = async () => {
+    const emailLineItems = stripeSessionData.line_items.data.map(line => {
+      return (
+        `<p><strong>Description:</strong> ${line.description} - <strong>Qty:</strong> ${line.quantity}</p>`
+      )
+    })
+
+    console.log({ emailLineItems })
+
+    try {
+      const res = fetch('https://api.sendinblue.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'api-key': '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',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          "name": "FAB Order",
+          "to": [{ "name": "Antony", "email": "info@shootingsuppliesltd.co.uk" }],
+          "sender": { "name": "FAB Defense", "email": "noreply@fabdefense.co.uk" },
+          "subject": "New FAB Web Order",
+          "htmlContent":
+            `<html>
+              <body style="background-color: black; color: white;">
+                <h1>You Have Received a New Order</h1>
+                <h3>Order Detail</h3>
+                <p><strong>Sale ID:</strong><span>${sal}</span></p>
+                <p><strong>Total Sale:</strong><span>${stripeSessionData.amount_total}</span></p>
+                <p><strong>Customer Email:</strong><span>${stripeSessionData.payment_intent.charges.data[0].billing_details.email}</span></p>
+                <p><strong>Order Items:</strong><span>${emailLineItems}</span></p>
+                <address>
+                <p><strong>Delivery Address</strong></p>
+                <p>${stripeSessionData.shipping.address.line1}</p>
+                <p>${stripeSessionData.shipping.address.line2}</p>
+                <p>${stripeSessionData.shipping.address.city}</p>
+                <p>${stripeSessionData.shipping.address.postal_code}</p>
+                </address>
+              </body>
+            </html>`
+        })
+      })
+    } catch (err) {
+      if (err) console.log(err)
+    }
+  }
+
+  sendEmailConfirmation()
+
   return {
     props: {
       data: stripeSessionData,
@@ -98,5 +147,6 @@ ResultPage.getInitialProps = async ({ query, req }) => {
     }
   }
 }
+
 
 export default ResultPage
