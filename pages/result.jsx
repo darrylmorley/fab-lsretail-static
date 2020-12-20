@@ -118,8 +118,7 @@ ResultPage.getInitialProps = async ({ query, req }) => {
               <body style="background-color: black; color: white;">
                 <h1>You Have Received a New Order</h1>
                 <h3>Order Detail</h3>
-                <p><strong>Sale ID:</strong><span>${sal}</span></p>
-                <p><strong>Total Sale:</strong><span>${stripeSessionData.amount_total}</span></p>
+                <p><strong>Sale ID:</strong><span>${saleID}</span></p>
                 <p><strong>Customer Email:</strong><span>${stripeSessionData.payment_intent.charges.data[0].billing_details.email}</span></p>
                 <p><strong>Order Items:</strong><span>${emailLineItems}</span></p>
                 <address>
